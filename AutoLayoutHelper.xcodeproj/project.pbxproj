@@ -12,8 +12,9 @@
 		AA55721C19FCE290003A1473 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA55721A19FCE290003A1473 /* Main.storyboard */; };
 		AA55721E19FCE290003A1473 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA55721D19FCE290003A1473 /* Images.xcassets */; };
 		AA55722119FCE290003A1473 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA55721F19FCE290003A1473 /* LaunchScreen.xib */; };
-		AA55722D19FCE290003A1473 /* UIView+AutoLayoutHelperTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA55722C19FCE290003A1473 /* UIView+AutoLayoutHelperTestCase.swift */; };
+		AA55722D19FCE290003A1473 /* UIView+AutoLayoutHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA55722C19FCE290003A1473 /* UIView+AutoLayoutHelperTests.swift */; };
 		AA55723719FCE2A3003A1473 /* UIView+AutoLayoutHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA55723619FCE2A3003A1473 /* UIView+AutoLayoutHelper.swift */; };
+		AA7642F21B2FFA0500F09D5B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7642F11B2FFA0500F09D5B /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,8 +36,9 @@
 		AA55722019FCE290003A1473 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		AA55722619FCE290003A1473 /* AutoLayoutHelperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AutoLayoutHelperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA55722B19FCE290003A1473 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AA55722C19FCE290003A1473 /* UIView+AutoLayoutHelperTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayoutHelperTestCase.swift"; sourceTree = "<group>"; };
+		AA55722C19FCE290003A1473 /* UIView+AutoLayoutHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayoutHelperTests.swift"; sourceTree = "<group>"; };
 		AA55723619FCE2A3003A1473 /* UIView+AutoLayoutHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayoutHelper.swift"; sourceTree = "<group>"; };
+		AA7642F11B2FFA0500F09D5B /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,12 +80,13 @@
 		AA55721319FCE290003A1473 /* AutoLayoutHelper */ = {
 			isa = PBXGroup;
 			children = (
-				AA55723619FCE2A3003A1473 /* UIView+AutoLayoutHelper.swift */,
 				AA55721619FCE290003A1473 /* AppDelegate.swift */,
-				AA55721A19FCE290003A1473 /* Main.storyboard */,
 				AA55721D19FCE290003A1473 /* Images.xcassets */,
 				AA55721F19FCE290003A1473 /* LaunchScreen.xib */,
+				AA55721A19FCE290003A1473 /* Main.storyboard */,
 				AA55721419FCE290003A1473 /* Supporting Files */,
+				AA55723619FCE2A3003A1473 /* UIView+AutoLayoutHelper.swift */,
+				AA7642F11B2FFA0500F09D5B /* ViewController.swift */,
 			);
 			path = AutoLayoutHelper;
 			sourceTree = "<group>";
@@ -99,7 +102,7 @@
 		AA55722919FCE290003A1473 /* AutoLayoutHelperTests */ = {
 			isa = PBXGroup;
 			children = (
-				AA55722C19FCE290003A1473 /* UIView+AutoLayoutHelperTestCase.swift */,
+				AA55722C19FCE290003A1473 /* UIView+AutoLayoutHelperTests.swift */,
 				AA55722A19FCE290003A1473 /* Supporting Files */,
 			);
 			path = AutoLayoutHelperTests;
@@ -213,6 +216,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA7642F21B2FFA0500F09D5B /* ViewController.swift in Sources */,
 				AA55721719FCE290003A1473 /* AppDelegate.swift in Sources */,
 				AA55723719FCE2A3003A1473 /* UIView+AutoLayoutHelper.swift in Sources */,
 			);
@@ -223,7 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				93029DB21AF7EDC60090D0A5 /* UIView+AutoLayoutHelper.swift in Sources */,
-				AA55722D19FCE290003A1473 /* UIView+AutoLayoutHelperTestCase.swift in Sources */,
+				AA55722D19FCE290003A1473 /* UIView+AutoLayoutHelperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
