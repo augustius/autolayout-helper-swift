@@ -1,81 +1,88 @@
-UIView+LayoutConstraints
+AutoLayoutHelper
 =======================
 
-UIView extension to ease creating Auto Layout Constraints
+UIView helper to easily create common Auto Layout Constraints for iOS
 
 ### The Problem
 
-Relating UIView's using Auto Layout programatically can either be quite verbose e.g. 
-
-        let leftConstraint: NSLayoutConstraint = NSLayoutConstraint(item: self.label, attribute: .Left, relatedBy: .Equal, toItem: self.label.superview, attribute: .Left, multiplier: 1.0, constant: 10.0)
-        self.label.superview.addConstraint(leftConstraint)
-        
-        let rightConstraint: NSLayoutConstraint = NSLayoutConstraint(item: self.label, attribute: .Right, relatedBy: .Equal, toItem: self.label.superview, attribute: .Right, multiplier: 1.0, constant: -10.0)
-        self.label.superview.addConstraint(rightConstraint)
-        
-        let topConstraint: NSLayoutConstraint = NSLayoutConstraint(item: self.label, attribute: .Top, relatedBy: .Equal, toItem: self.label.superview, attribute: .Top, multiplier: 1.0, constant: 10.0)
-        self.label.superview.addConstraint(topConstraint)
-        
-        let bottomConstraint: NSLayoutConstraint = NSLayoutConstraint(item: self.label, attribute: .Bottom, relatedBy: .Equal, toItem: self.label.superview, attribute: .Bottom, multiplier: 1.0, constant: -10.0)
-        self.label.superview.addConstraint(bottomConstraint)
-
-or error prone e.g. (using Visual Format Language):
-
-        var views = NSDictionaryOfVariableBindings(_label);
-        self.label.superview.addConstraints(NSLayoutConstraint constraintsWithVisualFormat:@"V:|_label|" options:0 metrics:nil views:views]
-        self.label.superview.addConstraints(NSLayoutConstraint constraintsWithVisualFormat:@"H:|_label|" options:0 metrics:nil views:views]        
+Using Auto Layout programatically can either be quite verbose i.e. building NSLayoutConstraint objects for each rule or error prone e.g. (using Visual Format Language strings)
 
 ### A Solution
 
-We can make adding NSLayoutConstraint relations into some common reusable methods that you call on any UIView you're trying to relate (via an Extension). This extension means you can relate a view you have create to another in a way that looks like its part of its setup and helps ensure we keep the NSLayoutConstraint creation code as DRY as possible.
+We can make creating common NSLayoutConstraint relations into some reusable methods we can call on any class that subclasses UIView. We also ensure the constraint created gets added to the view's superview for you. This means you can relate a UIView or subclass you have to another view fairly quickly with the NSLayoutAttribute or NSLayoutRelation you need and in a way that looks part of the view's setup routine and helps us keep the code DRY.
 
-### Setup
+### Dependencies 
 
-- Add the UIView+LayoutConstraints.swift file to your project. That's it!
+* [Xcode](https://itunes.apple.com/gb/app/xcode/id497799835?mt=12#)
+
+### Installation
+
+- Add the UIView+LayoutConstraints.swift file to your project.
 
 ### Usage
 
-#### Adding Constraints
+Examples:
 
-For example using this extension then to relate a label's left, right, top and bottom to its superview with some offsets you can now write:
+Add NSLayoutConstraint relations for a UIView relating its left, top, bottom and right edges to it's superview 
 
-        self.titleLabel?.addTopConstraint(toView: self.titleLabel?.superview, attribute: .Bottom, relation: .Equal, constant: 10.0)
-        self.titleLabel?.addBottomConstraint(toView: self.titleLabel?.superview, relation: .Equal, constant: -10.0)
-        self.titleLabel?.addLeftConstraint(toView: self.titleLabel?.superview, relation: .Equal, constant: 10.0)
-        self.titleLabel?.addRightConstraint(toView: self.titleLabel?.superview, relation: .Equal, constant: -10.0)
+    // Create view
+    
+    let leftView: UIView = UIView(frame: CGRectZero)
+    leftView.backgroundColor = UIColor.redColor()
+    self.view.addSubview(leftView)
+    
+    // Add constraints
+    
+    if let superview = leftView.superview {
+        
+        leftView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        
+        leftView.addTopConstraint(toView: superview, attribute: NSLayoutAttribute.Top, relation: NSLayoutRelation.Equal, constant: 10.0)
+        leftView.addLeftConstraint(toView: superview, attribute: NSLayoutAttribute.Left, relation: NSLayoutRelation.Equal, constant: 10.0)
+        leftView.addRightConstraint(toView: superview, attribute: NSLayoutAttribute.Right, relation: NSLayoutRelation.Equal, constant: -10.0)
+        leftView.addBottomConstraint(toView: superview, attribute: NSLayoutAttribute.Bottom, relation: NSLayoutRelation.Equal, constant: -10.0)
+    }
 
-or more succintly using this contribution from <a href="https://github.com/danieladias">@danieladias</a>
+or shorter assuming top to top, left to left, right to right and bottom to bottom you can omit the attribute: 
+    
+    leftView.addTopConstraint(toView: superview, relation: NSLayoutRelation.Equal, constant: 10.0)
+    leftView.addLeftConstraint(toView: superview, relation: NSLayoutRelation.Equal, constant: 10.0)
+    leftView.addRightConstraint(toView: superview, relation: NSLayoutRelation.Equal, constant: -10.0)
+    leftView.addBottomConstraint(toView: superview, attribute: NSLayoutAttribute.Bottom, relation: NSLayoutRelation.Equal, constant: -10.0)
 
-        self.titleLabel?.fillSuperView(UIEdgeInsetsMake(10.0, 10.0, -10.0, -10.0))
+or even more succinctly:
 
-Or to center a view in both X and Y to its superview
+    [leftView fillSuperview:UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)];
 
-        self.someView.addCenterXConstraint(toView: self.someView.superview, relation: .Equal, constant: 0)
-        self.someView.addCenterYConstraint(toView: self.someView.superview, relation: .Equal, constant: 0)
 
-#### Modifying Constraints
+Add constraints to center a UIView in its superview both vertically (Y) and horizontally (X): 
 
-Each method returns the NSLayoutConstraint object that it creates and adds so that you can store or modify it  
+    [label addCenterXConstraintToView:label.superview relation:NSLayoutRelationEqual constant:0.0];
+    [label addCenterYConstraintToView:label.superview relation:NSLayoutRelationEqual constant:0.0];
+    
+Add constraints for a fixed width and height amount:
 
-e.g. 
+    [view addWidthConstraintWithRelation:NSLayoutRelationEqual constant:100.0];
+    [view addHeightConstraintWithRelation:NSLayoutRelationEqual constant:80.0];
 
-      let heightConstraint = self.customView.addHeightConstraint(relation: .Equal, constant: 150.0)
+Modify constraints (since the methods return them to you)
 
-(where heightConstraint is a local or instance variable)
+    // Store the height constraint when its created
+        
+    self.heightConstraint = view.addHeightConstraint(NSLayoutRelation.Equal, constant: 80.0)
+    
+    ...
+    
+    // Modify height amount
+    
+    self.heightConstraint.constant = 30.0;
 
-### TODO:
-- [X] Document public methods
-- [ ] Unit tests
- - [ ] addLeft... methods
- - [ ] addRight... methods
- - [ ] addTop... methods
- - [ ] addBottom... methods
- - [ ] addCenterX... methods
- - [ ] addCenterY... methods
- - [ ] addWidth... methods
- - [ ] addHeight... methods
-- [ ] Make into a Swift Framework project for iOS 8+
+    // Animate changes
+    
+    UIView.animateWithDuration(0.3, animations: { () -> Void in
 
+        view.layoutIfNeeded()
+    })
 
 ### Team
-* Development: [Shagun Madhikarmi](mailto:shagun@ustwo.com?subject=autolayout-helper), [Daniela Dias](mailto:daniela@ustwo.com?subject=autolayout-helper)
+* Development: [Shagun Madhikarmi](mailto:shagun@ustwo.com), [Daniela Dias](mailto:daniela@ustwo.com)
