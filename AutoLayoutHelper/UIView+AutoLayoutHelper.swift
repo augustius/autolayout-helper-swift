@@ -14,9 +14,8 @@ import UIKit
 */
 extension UIView {
     
-    // MARK: - Constraints
-    
-    // MARK: Fill
+
+    // MARK: - Fill
     
     /**
     Creates and adds an array of NSLayoutConstraint objects that relates this view's top, left, bottom and right to its superview (given an optional UIEdgeInsets for each side)
@@ -45,7 +44,7 @@ extension UIView {
     }
     
     
-    // MARK: Left
+    // MARK: - Left
 
     /**
     Creates and adds an NSLayoutConstraint that relates this view's left to the left of another view.
@@ -84,7 +83,7 @@ extension UIView {
     }
     
     
-    // MARK: Right
+    // MARK: - Right
     
     /**
     Creates and adds an NSLayoutConstraint that relates this view's right to the right of another view.
@@ -123,7 +122,7 @@ extension UIView {
     }
     
     
-    // MARK: Top
+    // MARK: - Top
     
     /**
     Creates and adds an NSLayoutConstraint that relates this view's top to the top of another view.
@@ -162,7 +161,7 @@ extension UIView {
     }
 
     
-    // MARK: Bottom
+    // MARK: - Bottom
     
     /**
     Creates and adds an NSLayoutConstraint that relates this view's bottom to the bottom edge of another view
@@ -201,7 +200,7 @@ extension UIView {
     }
     
     
-    // MARK: Center X
+    // MARK: - Center X
     
     /**
     Creates and adds an NSLayoutConstraint that relates this view's centerX coordinate to centerX coordinate of another view.
@@ -246,7 +245,7 @@ extension UIView {
     }
     
     
-    // MARK: Center Y
+    // MARK: - Center Y
     
     /**
     Creates and adds an NSLayoutConstraint that relates this view's center Y coordinate to the center Y coordinate of another view, given a relation and offset
@@ -291,7 +290,7 @@ extension UIView {
     }
     
     
-    // MARK: Width
+    // MARK: - Width
     
     /**
     Creates and adds an NSLayoutConstraint that relates this view's width to the width of another view, given a relation and offset
@@ -324,7 +323,7 @@ extension UIView {
     }
     
     
-    // MARK: Height
+    // MARK: - Height
     
     /**
     Creates and adds an NSLayoutConstraint that relates this view's height to the height of another view, given a relation and offset
