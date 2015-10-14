@@ -17,8 +17,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         self.createViewWithAddTopLeftRightBottomConstraints()
-        self.createViewWithAddWidthHeightConstraints()
         self.createViewWithAddCenterXCenterYConstraint()
+        self.createViewWithAddWidthHeightConstraints()
     }
 
     private func createViewWithAddTopLeftRightBottomConstraints() {
@@ -28,15 +28,13 @@ class ViewController: UIViewController {
         self.view.addSubview(leftView)
         
         if let superview = leftView.superview {
-            
-            leftView.setTranslatesAutoresizingMaskIntoConstraints(false)
-            
+
+            leftView.translatesAutoresizingMaskIntoConstraints = false
+
             leftView.addTopConstraint(toView: superview, attribute: NSLayoutAttribute.Top, relation: NSLayoutRelation.Equal, constant: 10.0)
             leftView.addLeftConstraint(toView: superview, attribute: NSLayoutAttribute.Left, relation: NSLayoutRelation.Equal, constant: 10.0)
             leftView.addRightConstraint(toView: superview, attribute: NSLayoutAttribute.Right, relation: NSLayoutRelation.Equal, constant: -10.0)
             leftView.addBottomConstraint(toView: superview, attribute: NSLayoutAttribute.Bottom, relation: NSLayoutRelation.Equal, constant: -10.0)
-            
-            leftView.fillSuperView(UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0))
         }
     }
     
@@ -48,9 +46,9 @@ class ViewController: UIViewController {
         self.view.addSubview(label)
         
         if let superview = label.superview {
-            
-            label.setTranslatesAutoresizingMaskIntoConstraints(false)
-            
+
+            label.translatesAutoresizingMaskIntoConstraints = false
+
             label.addCenterXConstraint(toView: superview, relation: NSLayoutRelation.Equal, constant: 0.0)
             label.addCenterYConstraint(toView: superview, relation: NSLayoutRelation.Equal, constant: 0.0)
         }
@@ -62,7 +60,7 @@ class ViewController: UIViewController {
         view.backgroundColor = UIColor.blueColor()
         self.view.addSubview(view)
         
-        view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        view.translatesAutoresizingMaskIntoConstraints = false
         
         view.addWidthConstraint(NSLayoutRelation.Equal, constant: 100.0)
         view.addHeightConstraint(NSLayoutRelation.Equal, constant: 80.0)
