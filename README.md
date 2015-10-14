@@ -86,3 +86,7 @@ Modify constraints (since the methods return them to you)
 
 ### Team
 * Development: [Shagun Madhikarmi](mailto:shagun@ustwo.com), [Daniela Dias](mailto:daniela@ustwo.com)
+
+### TODO: 
+- Create Dynamic Framework target
+- Tag 0.9 and 1.0
