@@ -51,10 +51,10 @@ extension UIView {
         
         if let superview = self.superview {
         
-            var topConstraint: NSLayoutConstraint = self.addTopConstraint(toView: superview, relation: .Equal, constant: edges.top)
-            var leftConstraint: NSLayoutConstraint = self.addLeftConstraint(toView: superview, relation: .Equal, constant: edges.left)
-            var bottomConstraint: NSLayoutConstraint = self.addBottomConstraint(toView: superview, relation: .Equal, constant: edges.bottom)
-            var rightConstraint: NSLayoutConstraint = self.addRightConstraint(toView: superview, relation: .Equal, constant: edges.right)
+            let topConstraint: NSLayoutConstraint = self.addTopConstraint(toView: superview, relation: .Equal, constant: edges.top)
+            let leftConstraint: NSLayoutConstraint = self.addLeftConstraint(toView: superview, relation: .Equal, constant: edges.left)
+            let bottomConstraint: NSLayoutConstraint = self.addBottomConstraint(toView: superview, relation: .Equal, constant: edges.bottom)
+            let rightConstraint: NSLayoutConstraint = self.addRightConstraint(toView: superview, relation: .Equal, constant: edges.right)
             
             constraints = [topConstraint, leftConstraint, bottomConstraint, rightConstraint]
         }
