@@ -62,7 +62,7 @@ class ViewController: UIViewController {
         
         view.translatesAutoresizingMaskIntoConstraints = false
         
-        view.addWidthConstraint(NSLayoutRelation.Equal, constant: 100.0)
-        view.addHeightConstraint(NSLayoutRelation.Equal, constant: 80.0)
+        view.addWidthConstraint(toView: nil, relation: .Equal, constant: 60.0)
+        view.addHeightConstraint(toView: nil, relation: .Equal, constant: 80.0)
     }
 }
