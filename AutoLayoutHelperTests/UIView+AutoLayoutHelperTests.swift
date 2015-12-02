@@ -68,73 +68,59 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
     func testFillSuperview_CreatesTopConstraint() {
         
         // When
-        let constraints: [NSLayoutConstraint] = self.mockView.fillSuperView(UIEdgeInsetsZero)
+
+        let constraints: [NSLayoutConstraint] = self.mockView.fillSuperView(UIEdgeInsetsMake(10.0, 0.0, 0.0, 0.0))
         
         // Then
 
         let constraint = constraints[0]
-        
-        let actualResult = constraint.firstAttribute
-        let expectedResult = NSLayoutAttribute.Top
-        
-        XCTAssertEqual(expectedResult, actualResult, "Error: expected first constraint's firstAttribute to be \(expectedResult) but instead it is \(actualResult)")
-        
-        self.verify(constraint, firstView: self.mockView, firstAttribute: .Top, secondView: self.mockSuperview, secondAttribute: .Top, relation: .Equal, constant: 0.0)
+
+        self.verify(constraint, firstView: self.mockView, firstAttribute: .Top, secondView: self.mockSuperview, secondAttribute: .Top, relation: .Equal, constant: 10.0)
     }
     
     func testFillSuperview_CreatesLeftConstraint() {
         
         // When
-        let constraints: [NSLayoutConstraint] = self.mockView.fillSuperView(UIEdgeInsetsZero)
-        
+
+        let constraints: [NSLayoutConstraint] = self.mockView.fillSuperView(UIEdgeInsetsMake(0.0, 10.0, 0.0, 0.0))
+
         // Then
-        
+
         let constraint = constraints[1]
-        
-        let actualResult = constraint.firstAttribute
-        let expectedResult = NSLayoutAttribute.Left
-        
-        XCTAssertEqual(expectedResult, actualResult, "Error: expected first constraint's firstAttribute to be \(expectedResult) but instead it is \(actualResult)")
+
+        self.verify(constraint, firstView: self.mockView, firstAttribute: .Left, secondView: self.mockSuperview, secondAttribute: .Left, relation: .Equal, constant: 10.0)
     }
     
     func testFillSuperview_CreatesBottomConstraint() {
         
         // When
-        let constraints: [NSLayoutConstraint] = self.mockView.fillSuperView(UIEdgeInsetsZero)
+
+        let constraints: [NSLayoutConstraint] = self.mockView.fillSuperView(UIEdgeInsetsMake(0.0, 0.0, 10.0, 0.0))
         
         // Then
         
         let constraint = constraints[2]
-        
-        let actualResult = constraint.firstAttribute
-        let expectedResult = NSLayoutAttribute.Bottom
-        
-        XCTAssertEqual(expectedResult, actualResult, "Error: expected first constraint's firstAttribute to be \(expectedResult) but instead it is \(actualResult)")
-        
-        self.verify(constraint, firstView: self.mockView, firstAttribute: .Bottom, secondView: self.mockSuperview, secondAttribute: .Bottom, relation: .Equal, constant: 0.0)
+
+        self.verify(constraint, firstView: self.mockView, firstAttribute: .Bottom, secondView: self.mockSuperview, secondAttribute: .Bottom, relation: .Equal, constant: 10.0)
     }
 
     func testFillSuperview_CreatesRightConstraint() {
         
         // When
-        let constraints: [NSLayoutConstraint] = self.mockView.fillSuperView(UIEdgeInsetsZero)
-        
+
+        let constraints: [NSLayoutConstraint] = self.mockView.fillSuperView(UIEdgeInsetsMake(0.0, 0.0, 0.0, 10.0))
+
         // Then
-        
+
         let constraint = constraints[3]
-        
-        let actualResult = constraint.firstAttribute
-        let expectedResult = NSLayoutAttribute.Right
-        
-        XCTAssertEqual(expectedResult, actualResult, "Error: expected first constraint's firstAttribute to be \(expectedResult) but instead it is \(actualResult)")
-        
-        self.verify(constraint, firstView: self.mockView, firstAttribute: .Right, secondView: self.mockSuperview, secondAttribute: .Right, relation: .Equal, constant: 0.0)
+
+        self.verify(constraint, firstView: self.mockView, firstAttribute: .Right, secondView: self.mockSuperview, secondAttribute: .Right, relation: .Equal, constant: 10.0)
     }
 
     
     // MARK: - Left
     
-    func testAddLeftConstraint_AddsConstraint() {
+    func testAddLeftConstraint_AddsLeftConstraint() {
         
         // When
         
@@ -144,29 +130,35 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
 
         let expectedResult = self.mockSuperview.constraints
         let actualResult: [NSLayoutConstraint] = [leftConstraint]
-        
-        XCTAssertEqual(expectedResult, actualResult, "Error: expected constraints to contain just the leftConstraint but instead it does not it containts \(expectedResult.count) constraints")
+
+        XCTAssertEqual(expectedResult, actualResult, "Error: expected constraints to contain just the left constraint but instead it does not it contains \(expectedResult.count) constraints")
+
     }
 
     func testAddLeftConstraint_CreatesLeftConstraint() {
 
         // When
-        
-        let leftConstraint: NSLayoutConstraint = self.mockView.addLeftConstraint(toView: self.mockSuperview, attribute: .Right, relation: .Equal, constant: 0.0);
-        
-        // Then
-        
-        let expectedResult: UIView = self.mockView
-        let actualResult: UIView = leftConstraint.firstItem as! UIView
 
-        XCTAssertEqual(expectedResult, actualResult, "Error: expected leftConstraint firstItem to be the mockView but instead it is \(actualResult)")
-        
-        // Then        
-        
-        self.verify(leftConstraint, firstView: self.mockView, firstAttribute: .Left, secondView: self.mockSuperview, secondAttribute: .Right, relation: .Equal, constant: 0.0)
+        let leftConstraint: NSLayoutConstraint = self.mockView.addLeftConstraint(toView: self.mockSuperview, attribute: .Right, relation: .LessThanOrEqual, constant: 10.0)
+
+        // Then
+
+        self.verify(leftConstraint, firstView: self.mockView, firstAttribute: .Left, secondView: self.mockSuperview, secondAttribute: .Right, relation: .LessThanOrEqual, constant: 10.0)
     }
+
+    func testAddLeftConstraint_CreatesLeftConstraintWithDefaultValues() {
+
+        // When
+
+        let leftConstraint: NSLayoutConstraint = self.mockView.addLeftConstraint(toView: self.mockSuperview)
+
+        // Then
+
+        self.verify(leftConstraint, firstView: self.mockView, firstAttribute: .Left, secondView: self.mockSuperview, secondAttribute: .Left, relation: .Equal, constant: 0.0)
+    }
+
     
-    
+
     // MARK: - Right
     
     func testAddRightConstraint_AddsConstraint() {
@@ -180,31 +172,34 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
         let expectedResult = self.mockSuperview.constraints
         let actualResult: [NSLayoutConstraint] = [rightConstraint]
         
-        XCTAssertEqual(expectedResult, actualResult, "Error: expected constraints to contain just the rightConstraint but instead it does not it contains \(expectedResult.count) constraints")
+        XCTAssertEqual(expectedResult, actualResult, "Error: expected constraints to contain just the right constraint but instead it does not it contains \(expectedResult.count) constraints")
     }
     
     func testAddRightConstraint_CreatesRightConstraint() {
         
         // When
         
-        let rightConstraint: NSLayoutConstraint = self.mockView.addRightConstraint(toView: self.mockSuperview, attribute: .Left, relation: .Equal, constant: 0.0);
-        
+        let rightConstraint: NSLayoutConstraint = self.mockView.addRightConstraint(toView: self.mockSuperview, attribute: .Left, relation: .LessThanOrEqual, constant: 10.0);
+
         // Then
         
-        let expectedResult: UIView = self.mockView
-        let actualResult: UIView = rightConstraint.firstItem as! UIView
-        
-        XCTAssertEqual(expectedResult, actualResult, "Error: expected rightConstraint firstItem to be the mockView but instead it is \(actualResult)")
-        
-        // Then
-        
-        self.verify(rightConstraint, firstView: self.mockView, firstAttribute: .Right, secondView: self.mockSuperview, secondAttribute: .Left, relation: .Equal, constant: 0.0)
+        self.verify(rightConstraint, firstView: self.mockView, firstAttribute: .Right, secondView: self.mockSuperview, secondAttribute: .Left, relation: .LessThanOrEqual, constant: 10.0)
     }
-    
-    
+
+    func testAddRightConstraint_CreatesRightConstraintWithDefaultValues() {
+
+        // When
+
+        let rightConstraint: NSLayoutConstraint = self.mockView.addRightConstraint(toView: self.mockSuperview)
+        // Then
+
+        self.verify(rightConstraint, firstView: self.mockView, firstAttribute: .Right, secondView: self.mockSuperview, secondAttribute: .Right, relation: .Equal, constant: 0.0)
+    }
+
+
     // MARK: - Top
     
-    func testAddTopConstraint_AddsConstraint() {
+    func testAddTopConstraint_AddsTopConstraint() {
         
         // When
         
@@ -215,24 +210,35 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
         let expectedResult = self.mockSuperview.constraints
         let actualResult: [NSLayoutConstraint] = [topConstraint]
         
-        XCTAssertEqual(expectedResult, actualResult, "Error: expected constraints to contain just the topConstraint but instead it does not it contains \(expectedResult.count) constraints")
+        XCTAssertEqual(expectedResult, actualResult, "Error: expected constraints to contain just the top constraint but instead it does not it contains \(expectedResult.count) constraints")
     }
     
     func testAddTopConstraint_CreatesTopConstraint() {
         
         // When
         
-        let topConstraint: NSLayoutConstraint = self.mockView.addTopConstraint(toView: self.mockSuperview, attribute: .Bottom, relation: .Equal, constant: 0.0);
+        let topConstraint: NSLayoutConstraint = self.mockView.addTopConstraint(toView: self.mockSuperview, attribute: .Bottom, relation: .LessThanOrEqual, constant: 10.0);
 
         // Then
         
-        self.verify(topConstraint, firstView: self.mockView, firstAttribute: .Top, secondView: self.mockSuperview, secondAttribute: .Bottom, relation: .Equal, constant: 0.0)
+        self.verify(topConstraint, firstView: self.mockView, firstAttribute: .Top, secondView: self.mockSuperview, secondAttribute: .Bottom, relation: .LessThanOrEqual, constant: 10.0)
+    }
+
+    func testAddTopConstraint_CreatesTopConstraintWithDefaultValues() {
+
+        // When
+
+        let topConstraint: NSLayoutConstraint = self.mockView.addTopConstraint(toView: self.mockSuperview)
+
+        // Then
+
+        self.verify(topConstraint, firstView: self.mockView, firstAttribute: .Top, secondView: self.mockSuperview, secondAttribute: .Top, relation: .Equal, constant: 0.0)
     }
 
     
     // MARK: - Bottom
     
-    func testAddBottomConstraint_AddsConstraint() {
+    func testAddBottomConstraint_AddsBottomConstraint() {
         
         // When
         
@@ -243,21 +249,110 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
         let expectedResult = self.mockSuperview.constraints
         let actualResult: [NSLayoutConstraint] = [bottomConstraint]
         
-        XCTAssertEqual(expectedResult, actualResult, "Error: expected constraints to contain just the bottomConstraint but instead it does not it contains \(expectedResult.count) constraints")
+        XCTAssertEqual(expectedResult, actualResult, "Error: expected constraints to contain just the bottom constraint but instead it does not it contains \(expectedResult.count) constraints")
     }
     
     func testAddBottomConstraint_CreatesBottomConstraint() {
         
         // When
         
-        let bottomConstraint: NSLayoutConstraint = self.mockView.addBottomConstraint(toView: self.mockSuperview, attribute: .Bottom, relation: .Equal, constant: 0.0);
+        let bottomConstraint: NSLayoutConstraint = self.mockView.addBottomConstraint(toView: self.mockSuperview, attribute: .Bottom, relation: .LessThanOrEqual, constant: 10.0);
         
         // Then
         
+        self.verify(bottomConstraint, firstView: self.mockView, firstAttribute: .Bottom, secondView: self.mockSuperview, secondAttribute: .Bottom, relation: .LessThanOrEqual, constant: 10.0)
+    }
+
+    func testAddBottomConstraint_CreatesBottomConstraintWithDefaultValues() {
+
+        // When
+
+        let bottomConstraint: NSLayoutConstraint = self.mockView.addBottomConstraint(toView: self.mockSuperview, attribute: .Bottom, relation: .Equal, constant: 0.0);
+
+        // Then
+
         self.verify(bottomConstraint, firstView: self.mockView, firstAttribute: .Bottom, secondView: self.mockSuperview, secondAttribute: .Bottom, relation: .Equal, constant: 0.0)
     }
-    
-    
+
+
+    // MARK: - Height
+
+    func testAddHeightConstraint_AddsHeightConstraint() {
+
+        // When
+
+        let heightConstraint: NSLayoutConstraint = self.mockView.addHeightConstraint(toView: self.mockSuperview, relation: .Equal, constant: 0.0)
+
+        // Then
+
+        let expectedResult = self.mockSuperview.constraints
+        let actualResult: [NSLayoutConstraint] = [heightConstraint]
+
+        XCTAssertEqual(expectedResult, actualResult, "Error: expected constraints to contain just the bottom constraint but instead it does not it contains \(expectedResult.count) constraints")
+    }
+
+    func testAddHeightConstraint_CreatesHeightConstraint() {
+
+        // When
+
+        let heightConstraint: NSLayoutConstraint = self.mockView.addHeightConstraint(toView: self.mockSuperview, relation: .LessThanOrEqual, constant: 10.0);
+
+        // Then
+
+        self.verify(heightConstraint, firstView: self.mockView, firstAttribute: .Height, secondView: self.mockSuperview, secondAttribute: .Height, relation: .LessThanOrEqual, constant: 10.0)
+    }
+
+    func testAddHeightConstraint_CreatesHeightConstraintWithDefaultValues() {
+
+        // When
+
+        let heightConstraint: NSLayoutConstraint = self.mockView.addHeightConstraint(toView: self.mockSuperview)
+
+        // Then
+
+        self.verify(heightConstraint, firstView: self.mockView, firstAttribute: .Height, secondView: self.mockSuperview, secondAttribute: .Height, relation: .Equal, constant: 0.0)
+    }
+
+
+    // MARK: - Width
+
+    func testAddWidthConstraint_AddsWidthConstraint() {
+
+        // When
+
+        let widthConstraint: NSLayoutConstraint = self.mockView.addWidthConstraint(toView: self.mockSuperview, relation: .Equal, constant: 0.0)
+
+        // Then
+
+        let expectedResult = self.mockSuperview.constraints
+        let actualResult: [NSLayoutConstraint] = [widthConstraint]
+
+        XCTAssertEqual(expectedResult, actualResult, "Error: expected constraints to contain just the width constraint but instead it does not it contains \(expectedResult.count) constraints")
+    }
+
+    func testAddWidthConstraint_CreatesWidthConstraint() {
+
+        // When
+
+        let widthConstraint: NSLayoutConstraint = self.mockView.addWidthConstraint(toView: self.mockSuperview, relation: .LessThanOrEqual, constant: 10.0);
+
+        // Then
+
+        self.verify(widthConstraint, firstView: self.mockView, firstAttribute: .Width, secondView: self.mockSuperview, secondAttribute: .Width, relation: .LessThanOrEqual, constant: 10.0)
+    }
+
+    func testAddWidthConstraint_CreatesWidthConstraintWithDefaultValues() {
+
+        // When
+
+        let widthConstraint: NSLayoutConstraint = self.mockView.addWidthConstraint(toView: self.mockSuperview)
+
+        // Then
+
+        self.verify(widthConstraint, firstView: self.mockView, firstAttribute: .Width, secondView: self.mockSuperview, secondAttribute: .Width, relation: .Equal, constant: 0.0)
+    }
+
+
     // MARK: - Private
     
     private func verify(constraint: NSLayoutConstraint, firstView: UIView?, firstAttribute: NSLayoutAttribute, secondView: UIView?, secondAttribute: NSLayoutAttribute, relation: NSLayoutRelation?, constant: CGFloat?) {
@@ -283,16 +378,24 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
             
             XCTAssertNil(constraint.secondItem, "Error: expected constraint's secondItem to be nil but instead it is not \(constraint.secondItem)")
         }
-        
+
+        // First attribute
+
         XCTAssertEqual(constraint.firstAttribute, firstAttribute, "Error: expected constraint's firstAttribute to be \(firstAttribute) but instead it is \(constraint.firstAttribute)")
-        
+
+        // Second attribute
+
         XCTAssertEqual(constraint.secondAttribute, secondAttribute, "Error: expected constraint's firstAttribute to be \(secondAttribute) but instead it is \(constraint.firstAttribute.rawValue)")
-        
+
+        // Relation
+
         if let constraintRelation = relation {
 
             XCTAssertEqual(constraint.relation, constraintRelation, "Error: expected constraint's relation to be \(constraintRelation) but instead it is \(constraint.relation.rawValue)")
         }
-        
+
+        // Constant
+
         if let constraintConstant = constant {
 
             XCTAssertEqual(constraint.constant, constraintConstant, "Error: expected constraint's constant to be \(constraintConstant) but instead it is \(constraint.constant)")

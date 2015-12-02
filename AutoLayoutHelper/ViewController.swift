@@ -11,7 +11,10 @@ import UIKit
 class ViewController: UIViewController {
 
     private var heightConstraint: NSLayoutConstraint!
-    
+
+
+    // MARK: - View lifecycle
+
     override func viewDidLoad() {
 
         super.viewDidLoad()
@@ -21,48 +24,42 @@ class ViewController: UIViewController {
         self.createViewWithAddWidthHeightConstraints()
     }
 
+
+    // MARK: - Constraints methods
+
     private func createViewWithAddTopLeftRightBottomConstraints() {
    
-        let leftView: UIView = UIView(frame: CGRectZero)
-        leftView.backgroundColor = UIColor.redColor()
-        self.view.addSubview(leftView)
-        
-        if let superview = leftView.superview {
+        let redView: UIView = UIView(frame: CGRectZero)
+        redView.translatesAutoresizingMaskIntoConstraints = false
+        redView.backgroundColor = UIColor.redColor()
+        self.view.addSubview(redView)
 
-            leftView.translatesAutoresizingMaskIntoConstraints = false
-
-            leftView.addTopConstraint(toView: superview, attribute: NSLayoutAttribute.Top, relation: NSLayoutRelation.Equal, constant: 10.0)
-            leftView.addLeftConstraint(toView: superview, attribute: NSLayoutAttribute.Left, relation: NSLayoutRelation.Equal, constant: 10.0)
-            leftView.addRightConstraint(toView: superview, attribute: NSLayoutAttribute.Right, relation: NSLayoutRelation.Equal, constant: -10.0)
-            leftView.addBottomConstraint(toView: superview, attribute: NSLayoutAttribute.Bottom, relation: NSLayoutRelation.Equal, constant: -10.0)
-        }
+        redView.addTopConstraint(toView: redView.superview, constant: 10.0)
+        redView.addLeftConstraint(toView: redView.superview, constant: 10.0)
+        redView.addRightConstraint(toView: redView.superview, constant: -10.0)
+        redView.addBottomConstraint(toView: redView.superview, constant: -10.0)
     }
     
     private func createViewWithAddCenterXCenterYConstraint() {
 
         let label: UILabel = UILabel(frame: CGRectZero)
-        label.text = "Some centered text"
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = UIColor.yellowColor()
+        label.text = "Some centered text"
         self.view.addSubview(label)
-        
-        if let superview = label.superview {
 
-            label.translatesAutoresizingMaskIntoConstraints = false
-
-            label.addCenterXConstraint(toView: superview, relation: NSLayoutRelation.Equal, constant: 0.0)
-            label.addCenterYConstraint(toView: superview, relation: NSLayoutRelation.Equal, constant: 0.0)
-        }
+        label.addCenterXConstraint(toView: label.superview)
+        label.addCenterYConstraint(toView: label.superview)
     }
 
     private func createViewWithAddWidthHeightConstraints() {
         
-        let view: UIView = UIView(frame: CGRectZero)
-        view.backgroundColor = UIColor.blueColor()
-        self.view.addSubview(view)
-        
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
-        view.addWidthConstraint(NSLayoutRelation.Equal, constant: 100.0)
-        view.addHeightConstraint(NSLayoutRelation.Equal, constant: 80.0)
+        let blueView: UIView = UIView(frame: CGRectZero)
+        blueView.translatesAutoresizingMaskIntoConstraints = false
+        blueView.backgroundColor = UIColor.blueColor()
+        self.view.addSubview(blueView)
+
+        blueView.addWidthConstraint(toView: nil, constant: 80.0)
+        blueView.addHeightConstraint(toView: nil, constant: 80.0)
     }
 }

@@ -81,12 +81,12 @@
 			isa = PBXGroup;
 			children = (
 				AA55721619FCE290003A1473 /* AppDelegate.swift */,
+				AA55723619FCE2A3003A1473 /* UIView+AutoLayoutHelper.swift */,
+				AA7642F11B2FFA0500F09D5B /* ViewController.swift */,
 				AA55721D19FCE290003A1473 /* Images.xcassets */,
 				AA55721F19FCE290003A1473 /* LaunchScreen.xib */,
 				AA55721A19FCE290003A1473 /* Main.storyboard */,
 				AA55721419FCE290003A1473 /* Supporting Files */,
-				AA55723619FCE2A3003A1473 /* UIView+AutoLayoutHelper.swift */,
-				AA7642F11B2FFA0500F09D5B /* ViewController.swift */,
 			);
 			path = AutoLayoutHelper;
 			sourceTree = "<group>";
