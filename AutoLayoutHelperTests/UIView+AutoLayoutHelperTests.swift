@@ -101,7 +101,9 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
         
         let constraint = constraints[2]
 
-        self.verify(constraint, firstView: self.mockView, firstAttribute: .Bottom, secondView: self.mockSuperview, secondAttribute: .Bottom, relation: .Equal, constant: 10.0)
+        self.verify(constraint, firstView: self.mockView, firstAttribute: .Bottom, secondView: self.mockSuperview, secondAttribute: .Bottom, relation: .Equal, constant: -10.0)
+
+
     }
 
     func testFillSuperview_CreatesRightConstraint() {
@@ -114,7 +116,7 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
 
         let constraint = constraints[3]
 
-        self.verify(constraint, firstView: self.mockView, firstAttribute: .Right, secondView: self.mockSuperview, secondAttribute: .Right, relation: .Equal, constant: 10.0)
+        self.verify(constraint, firstView: self.mockView, firstAttribute: .Right, secondView: self.mockSuperview, secondAttribute: .Right, relation: .Equal, constant: -10.0)
     }
 
     
