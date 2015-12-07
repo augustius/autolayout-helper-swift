@@ -34,10 +34,7 @@ class ViewController: UIViewController {
         redView.backgroundColor = UIColor.redColor()
         self.view.addSubview(redView)
 
-        redView.addTopConstraint(toView: redView.superview, constant: 10.0)
-        redView.addLeftConstraint(toView: redView.superview, constant: 10.0)
-        redView.addRightConstraint(toView: redView.superview, constant: -10.0)
-        redView.addBottomConstraint(toView: redView.superview, constant: -10.0)
+        redView.fillSuperView(UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0))
     }
     
     private func createViewWithAddCenterXCenterYConstraint() {
@@ -58,7 +55,7 @@ class ViewController: UIViewController {
         blueView.translatesAutoresizingMaskIntoConstraints = false
         blueView.backgroundColor = UIColor.blueColor()
         self.view.addSubview(blueView)
-
+//        blueView.hidden = true
         blueView.addWidthConstraint(toView: nil, constant: 80.0)
         blueView.addHeightConstraint(toView: nil, constant: 80.0)
     }
