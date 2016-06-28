@@ -61,7 +61,33 @@ extension UIView {
         
         return constraints
     }
-    
+
+
+    // MARK: - Leading
+
+    /**
+     Creates and adds an NSLayoutConstraint that relates this view's leading edge to some specified edge of another view, given a relation and offset. Default parameter values relate this view's leading edge to be equal to the leading edge of the other view.
+
+     @note The new constraint is added to this view's superview for you
+
+     :param: view      The other view to relate this view's layout to
+
+     :param: attribute The other view's layout attribute to relate this view's leading edge to e.g. the other view's trailing edge. Default value is NSLayoutAttribute.Leading
+
+     :param: relation  The relation of the constraint. Default value is NSLayoutRelation.Equal
+
+     :param: constant  An amount by which to offset this view's left from the other view's specified edge. Default value is 0
+
+     :returns: The created NSLayoutConstraint for this leading attribute relation
+     */
+    func addLeadingConstraint(toView view: UIView?, attribute: NSLayoutAttribute = .Leading, relation: NSLayoutRelation = .Equal, constant: CGFloat = 0.0) -> NSLayoutConstraint {
+
+        let constraint = self.createConstraint(attribute: .Leading, toView: view, attribute: attribute, relation: relation, constant: constant)
+        self.superview?.addConstraint(constraint)
+
+        return constraint
+    }
+
 
     // MARK: - Left
 
