@@ -37,13 +37,15 @@ extension UIView {
     // MARK: - Fill
     
     /**
-    Creates and adds an array of NSLayoutConstraint objects that relates this view's top, left, bottom and right to its superview, given an optional set of insets for each side. Default parameter values relate this view's top, left, bottom and right to its superview with no insets.
+    Creates and adds an array of NSLayoutConstraint objects that relates this view's top, leading, bottom and trailing to its superview, given an optional set of insets for each side. 
+     
+     Default parameter values relate this view's top, leading, bottom and trailing to its superview with no insets.
 
     @note The constraints are also added to this view's superview for you
 
-    :param: edges An amount insets to apply to the top, left, bottom and right constraint. Default value is UIEdgeInsetsZero
+    :param: edges An amount insets to apply to the top, leading, bottom and trailing constraint. Default value is UIEdgeInsetsZero
     
-    :returns: An array of 4 x NSLayoutConstraint objects (top, left, bottom , right) if the superview exists otherwise an empty array
+    :returns: An array of 4 x NSLayoutConstraint objects (top, leading, bottom, trailing) if the superview exists otherwise an empty array
     */
     func fillSuperView(edges: UIEdgeInsets = UIEdgeInsetsZero) -> [NSLayoutConstraint] {
         
@@ -51,12 +53,12 @@ extension UIView {
         
         if let superview = self.superview {
 
-            let topConstraint: NSLayoutConstraint = self.addTopConstraint(toView: superview, relation: .Equal, constant: edges.top)
-            let leftConstraint: NSLayoutConstraint = self.addLeftConstraint(toView: superview, relation: .Equal, constant: edges.left)
-            let bottomConstraint: NSLayoutConstraint = self.addBottomConstraint(toView: superview, relation: .Equal, constant: -edges.bottom)
-            let rightConstraint: NSLayoutConstraint = self.addRightConstraint(toView: superview, relation: .Equal, constant: -edges.right)
+            let topConstraint = self.addTopConstraint(toView: superview, constant: edges.top)
+            let leadingConstraint = self.addLeadingConstraint(toView: superview, constant: edges.left)
+            let bottomConstraint = self.addBottomConstraint(toView: superview, constant: -edges.bottom)
+            let trailingConstraint = self.addTrailingConstraint(toView: superview, constant: -edges.right)
             
-            constraints = [topConstraint, leftConstraint, bottomConstraint, rightConstraint]
+            constraints = [topConstraint, leadingConstraint, bottomConstraint, trailingConstraint]
         }
         
         return constraints
