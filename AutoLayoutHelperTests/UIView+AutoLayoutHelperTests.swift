@@ -79,7 +79,7 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
         self.verify(constraint, firstView: self.mockView, firstAttribute: .Top, secondView: self.mockSuperview, secondAttribute: .Top, relation: .Equal, constant: 10.0)
     }
     
-    func testFillSuperview_CreatesLeftConstraint() {
+    func testFillSuperview_CreatesLeadingConstraint() {
         
         // When
 
@@ -89,7 +89,7 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
 
         let constraint = constraints[1]
 
-        self.verify(constraint, firstView: self.mockView, firstAttribute: .Left, secondView: self.mockSuperview, secondAttribute: .Left, relation: .Equal, constant: 10.0)
+        self.verify(constraint, firstView: self.mockView, firstAttribute: .Leading, secondView: self.mockSuperview, secondAttribute: .Leading, relation: .Equal, constant: 10.0)
     }
     
     func testFillSuperview_CreatesBottomConstraint() {
@@ -107,7 +107,7 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
 
     }
 
-    func testFillSuperview_CreatesRightConstraint() {
+    func testFillSuperview_CreatesTrailingConstraint() {
         
         // When
 
@@ -117,7 +117,7 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
 
         let constraint = constraints[3]
 
-        self.verify(constraint, firstView: self.mockView, firstAttribute: .Right, secondView: self.mockSuperview, secondAttribute: .Right, relation: .Equal, constant: -10.0)
+        self.verify(constraint, firstView: self.mockView, firstAttribute: .Trailing, secondView: self.mockSuperview, secondAttribute: .Trailing, relation: .Equal, constant: -10.0)
     }
 
 
