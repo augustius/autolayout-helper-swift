@@ -23,6 +23,7 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
         super.setUp()
         
         // Given
+        
         self.mockSuperview = UIView(frame: CGRectZero)
         self.mockView = UIView(frame: CGRectZero)
         self.mockView.translatesAutoresizingMaskIntoConstraints = false
@@ -159,6 +160,45 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
     }
 
 
+    // MARK: - Trailing
+
+    func testAddTrailingConstraint_AddsConstraint() {
+
+        // When
+
+        let rightConstraint: NSLayoutConstraint = self.mockView.addTrailingConstraint(toView: self.mockSuperview, attribute: .Leading, relation: .Equal, constant: 0.0);
+
+        // Then
+
+        let expectedResult = self.mockSuperview.constraints
+        let actualResult: [NSLayoutConstraint] = [rightConstraint]
+
+        XCTAssertEqual(expectedResult, actualResult, "Error: expected constraints to contain just the trailing constraint but instead it does not it contains \(expectedResult.count) constraints")
+    }
+
+    func testAddTrailingConstraint_CreatesTrailingConstraint() {
+
+        // When
+
+        let rightConstraint = self.mockView.addTrailingConstraint(toView: self.mockSuperview, attribute: .Leading, relation: .LessThanOrEqual, constant: 10.0);
+
+        // Then
+
+        self.verify(rightConstraint, firstView: self.mockView, firstAttribute: .Trailing, secondView: self.mockSuperview, secondAttribute: .Leading, relation: .LessThanOrEqual, constant: 10.0)
+    }
+
+    func testAddTrailingConstraint_CreatesTrailingConstraintWithDefaultValues() {
+
+        // When
+
+        let rightConstraint = self.mockView.addTrailingConstraint(toView: self.mockSuperview)
+
+        // Then
+
+        self.verify(rightConstraint, firstView: self.mockView, firstAttribute: .Trailing, secondView: self.mockSuperview, secondAttribute: .Trailing, relation: .Equal, constant: 0.0)
+    }
+
+
     // MARK: - Left
     
     func testAddLeftConstraint_AddsLeftConstraint() {
@@ -166,7 +206,7 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
         // When
         
         let leftConstraint: NSLayoutConstraint = self.mockView.addLeftConstraint(toView: self.mockSuperview, attribute: .Right, relation: .Equal, constant: 0.0)
-        
+
         // Then
 
         let expectedResult = self.mockSuperview.constraints
