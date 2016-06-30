@@ -31,7 +31,7 @@ This means you can relate a view to another view with the `NSLayoutAttribute` or
 
 #### Examples:
 
-##### Fill superview
+##### Fill Superview
 
 Add `NSLayoutConstraint` relations for a `UIView` relating its top, leading, trailing and bottom edges to it's superview 
 
@@ -57,9 +57,9 @@ or shorter you can omit the attributes:
     leftView.addTrailingConstraint(toView: superview, constant: -10.0)
     leftView.addBottomConstraint(toView: superview, constant: -10.0)
 
-or even shorter using `fillSuperview` (via [@danieladias](https://github.com/danieladias) )
+or even shorter using `fillSuperView` (via [@danieladias](https://github.com/danieladias) )
 
-    leftView.fillSuperview(UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0))
+    leftView.fillSuperView(UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0))
 
 ##### Centering
 
