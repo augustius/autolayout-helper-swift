@@ -23,6 +23,7 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
         super.setUp()
         
         // Given
+        
         self.mockSuperview = UIView(frame: CGRectZero)
         self.mockView = UIView(frame: CGRectZero)
         self.mockView.translatesAutoresizingMaskIntoConstraints = false
@@ -78,7 +79,7 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
         self.verify(constraint, firstView: self.mockView, firstAttribute: .Top, secondView: self.mockSuperview, secondAttribute: .Top, relation: .Equal, constant: 10.0)
     }
     
-    func testFillSuperview_CreatesLeftConstraint() {
+    func testFillSuperview_CreatesLeadingConstraint() {
         
         // When
 
@@ -88,7 +89,7 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
 
         let constraint = constraints[1]
 
-        self.verify(constraint, firstView: self.mockView, firstAttribute: .Left, secondView: self.mockSuperview, secondAttribute: .Left, relation: .Equal, constant: 10.0)
+        self.verify(constraint, firstView: self.mockView, firstAttribute: .Leading, secondView: self.mockSuperview, secondAttribute: .Leading, relation: .Equal, constant: 10.0)
     }
     
     func testFillSuperview_CreatesBottomConstraint() {
@@ -106,7 +107,7 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
 
     }
 
-    func testFillSuperview_CreatesRightConstraint() {
+    func testFillSuperview_CreatesTrailingConstraint() {
         
         // When
 
@@ -116,10 +117,88 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
 
         let constraint = constraints[3]
 
-        self.verify(constraint, firstView: self.mockView, firstAttribute: .Right, secondView: self.mockSuperview, secondAttribute: .Right, relation: .Equal, constant: -10.0)
+        self.verify(constraint, firstView: self.mockView, firstAttribute: .Trailing, secondView: self.mockSuperview, secondAttribute: .Trailing, relation: .Equal, constant: -10.0)
     }
 
-    
+
+    // MARK: - Leading
+
+    func testAddLeadingConstraint_AddsLeadingConstraint() {
+
+        // When
+
+        let leadingConstraint: NSLayoutConstraint = self.mockView.addLeadingConstraint(toView: self.mockSuperview, attribute: .Trailing, relation: .LessThanOrEqual, constant: 0.0)
+
+        // Then
+
+        let expectedResult = self.mockSuperview.constraints
+        let actualResult: [NSLayoutConstraint] = [leadingConstraint]
+
+        XCTAssertEqual(expectedResult, actualResult, "Error: expected constraints to contain just the leading constraint but instead it does not it contains \(expectedResult.count) constraints")
+    }
+
+    func testAddLeadingConstraint_CreatesLeadingConstraint() {
+
+        // When
+
+        let leadingConstraint = self.mockView.addLeadingConstraint(toView: self.mockSuperview, attribute: .Trailing, relation: .LessThanOrEqual, constant: 10.0)
+
+        // Then
+
+        self.verify(leadingConstraint, firstView: self.mockView, firstAttribute: .Leading, secondView: self.mockSuperview, secondAttribute: .Trailing, relation: .LessThanOrEqual, constant: 10.0)
+    }
+
+    func testAddLeadingConstraint_CreatesLeadingConstraintWithDefaultValues() {
+
+        // When
+
+        let leadingConstraint = self.mockView.addLeadingConstraint(toView: self.mockSuperview)
+
+        // Then
+
+        self.verify(leadingConstraint, firstView: self.mockView, firstAttribute: .Leading, secondView: self.mockSuperview, secondAttribute: .Leading, relation: .Equal, constant: 0.0)
+    }
+
+
+    // MARK: - Trailing
+
+    func testAddTrailingConstraint_AddsConstraint() {
+
+        // When
+
+        let rightConstraint: NSLayoutConstraint = self.mockView.addTrailingConstraint(toView: self.mockSuperview, attribute: .Leading, relation: .Equal, constant: 0.0);
+
+        // Then
+
+        let expectedResult = self.mockSuperview.constraints
+        let actualResult: [NSLayoutConstraint] = [rightConstraint]
+
+        XCTAssertEqual(expectedResult, actualResult, "Error: expected constraints to contain just the trailing constraint but instead it does not it contains \(expectedResult.count) constraints")
+    }
+
+    func testAddTrailingConstraint_CreatesTrailingConstraint() {
+
+        // When
+
+        let rightConstraint = self.mockView.addTrailingConstraint(toView: self.mockSuperview, attribute: .Leading, relation: .LessThanOrEqual, constant: 10.0);
+
+        // Then
+
+        self.verify(rightConstraint, firstView: self.mockView, firstAttribute: .Trailing, secondView: self.mockSuperview, secondAttribute: .Leading, relation: .LessThanOrEqual, constant: 10.0)
+    }
+
+    func testAddTrailingConstraint_CreatesTrailingConstraintWithDefaultValues() {
+
+        // When
+
+        let rightConstraint = self.mockView.addTrailingConstraint(toView: self.mockSuperview)
+
+        // Then
+
+        self.verify(rightConstraint, firstView: self.mockView, firstAttribute: .Trailing, secondView: self.mockSuperview, secondAttribute: .Trailing, relation: .Equal, constant: 0.0)
+    }
+
+
     // MARK: - Left
     
     func testAddLeftConstraint_AddsLeftConstraint() {
@@ -127,14 +206,13 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
         // When
         
         let leftConstraint: NSLayoutConstraint = self.mockView.addLeftConstraint(toView: self.mockSuperview, attribute: .Right, relation: .Equal, constant: 0.0)
-        
+
         // Then
 
         let expectedResult = self.mockSuperview.constraints
         let actualResult: [NSLayoutConstraint] = [leftConstraint]
 
         XCTAssertEqual(expectedResult, actualResult, "Error: expected constraints to contain just the left constraint but instead it does not it contains \(expectedResult.count) constraints")
-
     }
 
     func testAddLeftConstraint_CreatesLeftConstraint() {
@@ -159,7 +237,6 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
         self.verify(leftConstraint, firstView: self.mockView, firstAttribute: .Left, secondView: self.mockSuperview, secondAttribute: .Left, relation: .Equal, constant: 0.0)
     }
 
-    
 
     // MARK: - Right
     

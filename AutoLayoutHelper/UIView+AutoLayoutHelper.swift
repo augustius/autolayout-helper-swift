@@ -37,13 +37,15 @@ extension UIView {
     // MARK: - Fill
     
     /**
-    Creates and adds an array of NSLayoutConstraint objects that relates this view's top, left, bottom and right to its superview, given an optional set of insets for each side. Default parameter values relate this view's top, left, bottom and right to its superview with no insets.
+    Creates and adds an array of NSLayoutConstraint objects that relates this view's top, leading, bottom and trailing to its superview, given an optional set of insets for each side. 
+     
+     Default parameter values relate this view's top, leading, bottom and trailing to its superview with no insets.
 
     @note The constraints are also added to this view's superview for you
 
-    :param: edges An amount insets to apply to the top, left, bottom and right constraint. Default value is UIEdgeInsetsZero
+    :param: edges An amount insets to apply to the top, leading, bottom and trailing constraint. Default value is UIEdgeInsetsZero
     
-    :returns: An array of 4 x NSLayoutConstraint objects (top, left, bottom , right) if the superview exists otherwise an empty array
+    :returns: An array of 4 x NSLayoutConstraint objects (top, leading, bottom, trailing) if the superview exists otherwise an empty array
     */
     func fillSuperView(edges: UIEdgeInsets = UIEdgeInsetsZero) -> [NSLayoutConstraint] {
         
@@ -51,17 +53,66 @@ extension UIView {
         
         if let superview = self.superview {
 
-            let topConstraint: NSLayoutConstraint = self.addTopConstraint(toView: superview, relation: .Equal, constant: edges.top)
-            let leftConstraint: NSLayoutConstraint = self.addLeftConstraint(toView: superview, relation: .Equal, constant: edges.left)
-            let bottomConstraint: NSLayoutConstraint = self.addBottomConstraint(toView: superview, relation: .Equal, constant: -edges.bottom)
-            let rightConstraint: NSLayoutConstraint = self.addRightConstraint(toView: superview, relation: .Equal, constant: -edges.right)
+            let topConstraint = self.addTopConstraint(toView: superview, constant: edges.top)
+            let leadingConstraint = self.addLeadingConstraint(toView: superview, constant: edges.left)
+            let bottomConstraint = self.addBottomConstraint(toView: superview, constant: -edges.bottom)
+            let trailingConstraint = self.addTrailingConstraint(toView: superview, constant: -edges.right)
             
-            constraints = [topConstraint, leftConstraint, bottomConstraint, rightConstraint]
+            constraints = [topConstraint, leadingConstraint, bottomConstraint, trailingConstraint]
         }
         
         return constraints
     }
-    
+
+
+    // MARK: - Leading / Trailing
+
+    /**
+     Creates and adds an `NSLayoutConstraint` that relates this view's leading edge to some specified edge of another view, given a relation and offset. Default parameter values relate this view's leading edge to be equal to the leading edge of the other view.
+
+     @note The new constraint is added to this view's superview for you
+
+     :param: view      The other view to relate this view's layout to
+
+     :param: attribute The other view's layout attribute to relate this view's leading edge to e.g. the other view's trailing edge. Default value is `NSLayoutAttribute.Leading`
+
+     :param: relation  The relation of the constraint. Default value is `NSLayoutRelation.Equal`
+
+     :param: constant  An amount by which to offset this view's left from the other view's specified edge. Default value is 0
+
+     :returns: The created `NSLayoutConstraint` for this leading attribute relation
+     */
+    func addLeadingConstraint(toView view: UIView?, attribute: NSLayoutAttribute = .Leading, relation: NSLayoutRelation = .Equal, constant: CGFloat = 0.0) -> NSLayoutConstraint {
+
+        let constraint = self.createConstraint(attribute: .Leading, toView: view, attribute: attribute, relation: relation, constant: constant)
+        self.superview?.addConstraint(constraint)
+
+        return constraint
+    }
+
+    /**
+     Creates and adds an `NSLayoutConstraint` that relates this view's trailing edge to some specified edge of another view, given a relation and offset. Default parameter values relate this view's trailing edge to be equal to the trailing edge of the other view.
+
+     @note The new constraint is added to this view's superview for you
+
+     :param: view      The other view to relate this view's layout to
+
+     :param: attribute The other view's layout attribute to relate this view's leading edge to e.g. the other view's trailing edge. Default value is `NSLayoutAttribute.Trailing`
+
+     :param: relation  The relation of the constraint. Default value is `NSLayoutRelation.Equal`
+
+     :param: constant  An amount by which to offset this view's left from the other view's specified edge. Default value is 0
+
+     :returns: The created `NSLayoutConstraint` for this trailing attribute relation
+     */
+    func addTrailingConstraint(toView view: UIView?, attribute: NSLayoutAttribute = .Trailing, relation: NSLayoutRelation = .Equal, constant: CGFloat = 0.0) -> NSLayoutConstraint {
+
+        let constraint = self.createConstraint(attribute: .Trailing, toView: view, attribute: attribute, relation: relation, constant: constant)
+        self.superview?.addConstraint(constraint)
+
+        return constraint
+    }
+
 
     // MARK: - Left
 
