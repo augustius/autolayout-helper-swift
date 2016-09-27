@@ -12,8 +12,8 @@ import XCTest
 
 class UIViewAutoLayoutHelperTests: XCTestCase {
     
-    private var mockView: UIView!
-    private var mockSuperview: UIView!
+    fileprivate var mockView: UIView!
+    fileprivate var mockSuperview: UIView!
 
     
     // MARK: - Setup / Teardown
@@ -24,8 +24,8 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
         
         // Given
         
-        self.mockSuperview = UIView(frame: CGRectZero)
-        self.mockView = UIView(frame: CGRectZero)
+        self.mockSuperview = UIView(frame: CGRect.zero)
+        self.mockView = UIView(frame: CGRect.zero)
         self.mockView.translatesAutoresizingMaskIntoConstraints = false
         self.mockSuperview.addSubview(mockView)
     }
@@ -45,7 +45,7 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
     func testFillSuperview_ReturnsCorrectNumberOfConstraints() {
         
         // When
-        let constraints: [NSLayoutConstraint] = self.mockView.fillSuperView(UIEdgeInsetsZero)
+        let constraints: [NSLayoutConstraint] = self.mockView.fillSuperView(UIEdgeInsets.zero)
         
         // Then
         let actualResult = constraints.count
@@ -57,7 +57,7 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
     func testFillSuperview_AddsConstraints() {
         
         // When
-        let constraints: [NSLayoutConstraint] = self.mockView.fillSuperView(UIEdgeInsetsZero)
+        let constraints: [NSLayoutConstraint] = self.mockView.fillSuperView(UIEdgeInsets.zero)
         
         // Then
         let expectedResult = self.mockSuperview.constraints
@@ -76,7 +76,7 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
 
         let constraint = constraints[0]
 
-        self.verify(constraint, firstView: self.mockView, firstAttribute: .Top, secondView: self.mockSuperview, secondAttribute: .Top, relation: .Equal, constant: 10.0)
+        self.verify(constraint, firstView: self.mockView, firstAttribute: .top, secondView: self.mockSuperview, secondAttribute: .top, relation: .equal, constant: 10.0)
     }
     
     func testFillSuperview_CreatesLeadingConstraint() {
@@ -89,7 +89,7 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
 
         let constraint = constraints[1]
 
-        self.verify(constraint, firstView: self.mockView, firstAttribute: .Leading, secondView: self.mockSuperview, secondAttribute: .Leading, relation: .Equal, constant: 10.0)
+        self.verify(constraint, firstView: self.mockView, firstAttribute: .leading, secondView: self.mockSuperview, secondAttribute: .leading, relation: .equal, constant: 10.0)
     }
     
     func testFillSuperview_CreatesBottomConstraint() {
@@ -102,7 +102,7 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
         
         let constraint = constraints[2]
 
-        self.verify(constraint, firstView: self.mockView, firstAttribute: .Bottom, secondView: self.mockSuperview, secondAttribute: .Bottom, relation: .Equal, constant: -10.0)
+        self.verify(constraint, firstView: self.mockView, firstAttribute: .bottom, secondView: self.mockSuperview, secondAttribute: .bottom, relation: .equal, constant: -10.0)
 
 
     }
@@ -117,7 +117,7 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
 
         let constraint = constraints[3]
 
-        self.verify(constraint, firstView: self.mockView, firstAttribute: .Trailing, secondView: self.mockSuperview, secondAttribute: .Trailing, relation: .Equal, constant: -10.0)
+        self.verify(constraint, firstView: self.mockView, firstAttribute: .trailing, secondView: self.mockSuperview, secondAttribute: .trailing, relation: .equal, constant: -10.0)
     }
 
 
@@ -127,7 +127,7 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
 
         // When
 
-        let leadingConstraint: NSLayoutConstraint = self.mockView.addLeadingConstraint(toView: self.mockSuperview, attribute: .Trailing, relation: .LessThanOrEqual, constant: 0.0)
+        let leadingConstraint: NSLayoutConstraint = self.mockView.addLeadingConstraint(toView: self.mockSuperview, attribute: .trailing, relation: .lessThanOrEqual, constant: 0.0)
 
         // Then
 
@@ -141,11 +141,11 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
 
         // When
 
-        let leadingConstraint = self.mockView.addLeadingConstraint(toView: self.mockSuperview, attribute: .Trailing, relation: .LessThanOrEqual, constant: 10.0)
+        let leadingConstraint = self.mockView.addLeadingConstraint(toView: self.mockSuperview, attribute: .trailing, relation: .lessThanOrEqual, constant: 10.0)
 
         // Then
 
-        self.verify(leadingConstraint, firstView: self.mockView, firstAttribute: .Leading, secondView: self.mockSuperview, secondAttribute: .Trailing, relation: .LessThanOrEqual, constant: 10.0)
+        self.verify(leadingConstraint, firstView: self.mockView, firstAttribute: .leading, secondView: self.mockSuperview, secondAttribute: .trailing, relation: .lessThanOrEqual, constant: 10.0)
     }
 
     func testAddLeadingConstraint_CreatesLeadingConstraintWithDefaultValues() {
@@ -156,7 +156,7 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
 
         // Then
 
-        self.verify(leadingConstraint, firstView: self.mockView, firstAttribute: .Leading, secondView: self.mockSuperview, secondAttribute: .Leading, relation: .Equal, constant: 0.0)
+        self.verify(leadingConstraint, firstView: self.mockView, firstAttribute: .leading, secondView: self.mockSuperview, secondAttribute: .leading, relation: .equal, constant: 0.0)
     }
 
 
@@ -166,7 +166,7 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
 
         // When
 
-        let rightConstraint: NSLayoutConstraint = self.mockView.addTrailingConstraint(toView: self.mockSuperview, attribute: .Leading, relation: .Equal, constant: 0.0);
+        let rightConstraint: NSLayoutConstraint = self.mockView.addTrailingConstraint(toView: self.mockSuperview, attribute: .leading, relation: .equal, constant: 0.0);
 
         // Then
 
@@ -180,11 +180,11 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
 
         // When
 
-        let rightConstraint = self.mockView.addTrailingConstraint(toView: self.mockSuperview, attribute: .Leading, relation: .LessThanOrEqual, constant: 10.0);
+        let rightConstraint = self.mockView.addTrailingConstraint(toView: self.mockSuperview, attribute: .leading, relation: .lessThanOrEqual, constant: 10.0);
 
         // Then
 
-        self.verify(rightConstraint, firstView: self.mockView, firstAttribute: .Trailing, secondView: self.mockSuperview, secondAttribute: .Leading, relation: .LessThanOrEqual, constant: 10.0)
+        self.verify(rightConstraint, firstView: self.mockView, firstAttribute: .trailing, secondView: self.mockSuperview, secondAttribute: .leading, relation: .lessThanOrEqual, constant: 10.0)
     }
 
     func testAddTrailingConstraint_CreatesTrailingConstraintWithDefaultValues() {
@@ -195,7 +195,7 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
 
         // Then
 
-        self.verify(rightConstraint, firstView: self.mockView, firstAttribute: .Trailing, secondView: self.mockSuperview, secondAttribute: .Trailing, relation: .Equal, constant: 0.0)
+        self.verify(rightConstraint, firstView: self.mockView, firstAttribute: .trailing, secondView: self.mockSuperview, secondAttribute: .trailing, relation: .equal, constant: 0.0)
     }
 
 
@@ -205,7 +205,7 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
         
         // When
         
-        let leftConstraint: NSLayoutConstraint = self.mockView.addLeftConstraint(toView: self.mockSuperview, attribute: .Right, relation: .Equal, constant: 0.0)
+        let leftConstraint: NSLayoutConstraint = self.mockView.addLeftConstraint(toView: self.mockSuperview, attribute: .right, relation: .equal, constant: 0.0)
 
         // Then
 
@@ -219,11 +219,11 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
 
         // When
 
-        let leftConstraint: NSLayoutConstraint = self.mockView.addLeftConstraint(toView: self.mockSuperview, attribute: .Right, relation: .LessThanOrEqual, constant: 10.0)
+        let leftConstraint: NSLayoutConstraint = self.mockView.addLeftConstraint(toView: self.mockSuperview, attribute: .right, relation: .lessThanOrEqual, constant: 10.0)
 
         // Then
 
-        self.verify(leftConstraint, firstView: self.mockView, firstAttribute: .Left, secondView: self.mockSuperview, secondAttribute: .Right, relation: .LessThanOrEqual, constant: 10.0)
+        self.verify(leftConstraint, firstView: self.mockView, firstAttribute: .left, secondView: self.mockSuperview, secondAttribute: .right, relation: .lessThanOrEqual, constant: 10.0)
     }
 
     func testAddLeftConstraint_CreatesLeftConstraintWithDefaultValues() {
@@ -234,7 +234,7 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
 
         // Then
 
-        self.verify(leftConstraint, firstView: self.mockView, firstAttribute: .Left, secondView: self.mockSuperview, secondAttribute: .Left, relation: .Equal, constant: 0.0)
+        self.verify(leftConstraint, firstView: self.mockView, firstAttribute: .left, secondView: self.mockSuperview, secondAttribute: .left, relation: .equal, constant: 0.0)
     }
 
 
@@ -244,7 +244,7 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
         
         // When
         
-        let rightConstraint: NSLayoutConstraint = self.mockView.addRightConstraint(toView: self.mockSuperview, attribute: .Left, relation: .Equal, constant: 0.0);
+        let rightConstraint: NSLayoutConstraint = self.mockView.addRightConstraint(toView: self.mockSuperview, attribute: .left, relation: .equal, constant: 0.0);
         
         // Then
         
@@ -258,11 +258,11 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
         
         // When
         
-        let rightConstraint: NSLayoutConstraint = self.mockView.addRightConstraint(toView: self.mockSuperview, attribute: .Left, relation: .LessThanOrEqual, constant: 10.0);
+        let rightConstraint: NSLayoutConstraint = self.mockView.addRightConstraint(toView: self.mockSuperview, attribute: .left, relation: .lessThanOrEqual, constant: 10.0);
 
         // Then
         
-        self.verify(rightConstraint, firstView: self.mockView, firstAttribute: .Right, secondView: self.mockSuperview, secondAttribute: .Left, relation: .LessThanOrEqual, constant: 10.0)
+        self.verify(rightConstraint, firstView: self.mockView, firstAttribute: .right, secondView: self.mockSuperview, secondAttribute: .left, relation: .lessThanOrEqual, constant: 10.0)
     }
 
     func testAddRightConstraint_CreatesRightConstraintWithDefaultValues() {
@@ -272,7 +272,7 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
         let rightConstraint: NSLayoutConstraint = self.mockView.addRightConstraint(toView: self.mockSuperview)
         // Then
 
-        self.verify(rightConstraint, firstView: self.mockView, firstAttribute: .Right, secondView: self.mockSuperview, secondAttribute: .Right, relation: .Equal, constant: 0.0)
+        self.verify(rightConstraint, firstView: self.mockView, firstAttribute: .right, secondView: self.mockSuperview, secondAttribute: .right, relation: .equal, constant: 0.0)
     }
 
 
@@ -282,7 +282,7 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
         
         // When
         
-        let topConstraint: NSLayoutConstraint = self.mockView.addTopConstraint(toView: self.mockSuperview, attribute: .Bottom, relation: .Equal, constant: 0.0);
+        let topConstraint: NSLayoutConstraint = self.mockView.addTopConstraint(toView: self.mockSuperview, attribute: .bottom, relation: .equal, constant: 0.0);
         
         // Then
         
@@ -296,11 +296,11 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
         
         // When
         
-        let topConstraint: NSLayoutConstraint = self.mockView.addTopConstraint(toView: self.mockSuperview, attribute: .Bottom, relation: .LessThanOrEqual, constant: 10.0);
+        let topConstraint: NSLayoutConstraint = self.mockView.addTopConstraint(toView: self.mockSuperview, attribute: .bottom, relation: .lessThanOrEqual, constant: 10.0);
 
         // Then
         
-        self.verify(topConstraint, firstView: self.mockView, firstAttribute: .Top, secondView: self.mockSuperview, secondAttribute: .Bottom, relation: .LessThanOrEqual, constant: 10.0)
+        self.verify(topConstraint, firstView: self.mockView, firstAttribute: .top, secondView: self.mockSuperview, secondAttribute: .bottom, relation: .lessThanOrEqual, constant: 10.0)
     }
 
     func testAddTopConstraint_CreatesTopConstraintWithDefaultValues() {
@@ -311,7 +311,7 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
 
         // Then
 
-        self.verify(topConstraint, firstView: self.mockView, firstAttribute: .Top, secondView: self.mockSuperview, secondAttribute: .Top, relation: .Equal, constant: 0.0)
+        self.verify(topConstraint, firstView: self.mockView, firstAttribute: .top, secondView: self.mockSuperview, secondAttribute: .top, relation: .equal, constant: 0.0)
     }
 
     
@@ -321,7 +321,7 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
         
         // When
         
-        let bottomConstraint: NSLayoutConstraint = self.mockView.addBottomConstraint(toView: self.mockSuperview, attribute: .Bottom, relation: .Equal, constant: 0.0);
+        let bottomConstraint: NSLayoutConstraint = self.mockView.addBottomConstraint(toView: self.mockSuperview, attribute: .bottom, relation: .equal, constant: 0.0);
         
         // Then
         
@@ -335,22 +335,22 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
         
         // When
         
-        let bottomConstraint: NSLayoutConstraint = self.mockView.addBottomConstraint(toView: self.mockSuperview, attribute: .Bottom, relation: .LessThanOrEqual, constant: 10.0);
+        let bottomConstraint: NSLayoutConstraint = self.mockView.addBottomConstraint(toView: self.mockSuperview, attribute: .bottom, relation: .lessThanOrEqual, constant: 10.0);
         
         // Then
         
-        self.verify(bottomConstraint, firstView: self.mockView, firstAttribute: .Bottom, secondView: self.mockSuperview, secondAttribute: .Bottom, relation: .LessThanOrEqual, constant: 10.0)
+        self.verify(bottomConstraint, firstView: self.mockView, firstAttribute: .bottom, secondView: self.mockSuperview, secondAttribute: .bottom, relation: .lessThanOrEqual, constant: 10.0)
     }
 
     func testAddBottomConstraint_CreatesBottomConstraintWithDefaultValues() {
 
         // When
 
-        let bottomConstraint: NSLayoutConstraint = self.mockView.addBottomConstraint(toView: self.mockSuperview, attribute: .Bottom, relation: .Equal, constant: 0.0);
+        let bottomConstraint: NSLayoutConstraint = self.mockView.addBottomConstraint(toView: self.mockSuperview, attribute: .bottom, relation: .equal, constant: 0.0);
 
         // Then
 
-        self.verify(bottomConstraint, firstView: self.mockView, firstAttribute: .Bottom, secondView: self.mockSuperview, secondAttribute: .Bottom, relation: .Equal, constant: 0.0)
+        self.verify(bottomConstraint, firstView: self.mockView, firstAttribute: .bottom, secondView: self.mockSuperview, secondAttribute: .bottom, relation: .equal, constant: 0.0)
     }
 
 
@@ -360,7 +360,7 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
 
         // When
 
-        let heightConstraint: NSLayoutConstraint = self.mockView.addHeightConstraint(toView: self.mockSuperview, relation: .Equal, constant: 0.0)
+        let heightConstraint: NSLayoutConstraint = self.mockView.addHeightConstraint(toView: self.mockSuperview, relation: .equal, constant: 0.0)
 
         // Then
 
@@ -374,11 +374,11 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
 
         // When
 
-        let heightConstraint: NSLayoutConstraint = self.mockView.addHeightConstraint(toView: self.mockSuperview, relation: .LessThanOrEqual, constant: 10.0);
+        let heightConstraint: NSLayoutConstraint = self.mockView.addHeightConstraint(toView: self.mockSuperview, relation: .lessThanOrEqual, constant: 10.0);
 
         // Then
 
-        self.verify(heightConstraint, firstView: self.mockView, firstAttribute: .Height, secondView: self.mockSuperview, secondAttribute: .Height, relation: .LessThanOrEqual, constant: 10.0)
+        self.verify(heightConstraint, firstView: self.mockView, firstAttribute: .height, secondView: self.mockSuperview, secondAttribute: .height, relation: .lessThanOrEqual, constant: 10.0)
     }
 
     func testAddHeightConstraint_CreatesHeightConstraintWithDefaultValues() {
@@ -389,7 +389,7 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
 
         // Then
 
-        self.verify(heightConstraint, firstView: self.mockView, firstAttribute: .Height, secondView: self.mockSuperview, secondAttribute: .Height, relation: .Equal, constant: 0.0)
+        self.verify(heightConstraint, firstView: self.mockView, firstAttribute: .height, secondView: self.mockSuperview, secondAttribute: .height, relation: .equal, constant: 0.0)
     }
 
 
@@ -399,7 +399,7 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
 
         // When
 
-        let widthConstraint: NSLayoutConstraint = self.mockView.addWidthConstraint(toView: self.mockSuperview, relation: .Equal, constant: 0.0)
+        let widthConstraint: NSLayoutConstraint = self.mockView.addWidthConstraint(toView: self.mockSuperview, relation: .equal, constant: 0.0)
 
         // Then
 
@@ -413,11 +413,11 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
 
         // When
 
-        let widthConstraint: NSLayoutConstraint = self.mockView.addWidthConstraint(toView: self.mockSuperview, relation: .LessThanOrEqual, constant: 10.0);
+        let widthConstraint: NSLayoutConstraint = self.mockView.addWidthConstraint(toView: self.mockSuperview, relation: .lessThanOrEqual, constant: 10.0);
 
         // Then
 
-        self.verify(widthConstraint, firstView: self.mockView, firstAttribute: .Width, secondView: self.mockSuperview, secondAttribute: .Width, relation: .LessThanOrEqual, constant: 10.0)
+        self.verify(widthConstraint, firstView: self.mockView, firstAttribute: .width, secondView: self.mockSuperview, secondAttribute: .width, relation: .lessThanOrEqual, constant: 10.0)
     }
 
     func testAddWidthConstraint_CreatesWidthConstraintWithDefaultValues() {
@@ -428,13 +428,13 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
 
         // Then
 
-        self.verify(widthConstraint, firstView: self.mockView, firstAttribute: .Width, secondView: self.mockSuperview, secondAttribute: .Width, relation: .Equal, constant: 0.0)
+        self.verify(widthConstraint, firstView: self.mockView, firstAttribute: .width, secondView: self.mockSuperview, secondAttribute: .width, relation: .equal, constant: 0.0)
     }
 
 
     // MARK: - Private
     
-    private func verify(constraint: NSLayoutConstraint, firstView: UIView?, firstAttribute: NSLayoutAttribute, secondView: UIView?, secondAttribute: NSLayoutAttribute, relation: NSLayoutRelation?, constant: CGFloat?) {
+    fileprivate func verify(_ constraint: NSLayoutConstraint, firstView: UIView?, firstAttribute: NSLayoutAttribute, secondView: UIView?, secondAttribute: NSLayoutAttribute, relation: NSLayoutRelation?, constant: CGFloat?) {
         
         // First view
         

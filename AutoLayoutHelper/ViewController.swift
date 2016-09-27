@@ -10,10 +10,10 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    private var heightConstraint: NSLayoutConstraint!
-    private var filledView: UIView!
-    private var centerLabel: UILabel!
-    private var fixedWidthAndHeightView: UIView!
+    fileprivate var heightConstraint: NSLayoutConstraint!
+    fileprivate var filledView: UIView!
+    fileprivate var centerLabel: UILabel!
+    fileprivate var fixedWidthAndHeightView: UIView!
 
 
     // MARK: - View lifecycle
@@ -33,20 +33,20 @@ class ViewController: UIViewController {
 
     // MARK: - Examples
 
-    private func createViewWithAddTopLeftRightBottomConstraints() {
+    fileprivate func createViewWithAddTopLeftRightBottomConstraints() {
    
-        self.filledView = UIView(frame: CGRectZero)
-        self.filledView.backgroundColor = UIColor.redColor()
+        self.filledView = UIView(frame: CGRect.zero)
+        self.filledView.backgroundColor = UIColor.red
         self.view.addSubview(self.filledView)
 
         self.filledView.translatesAutoresizingMaskIntoConstraints = false
         self.filledView.fillSuperView(UIEdgeInsetsMake(20.0, 20.0, 20.0, 20.0))
     }
     
-    private func createViewWithAddCenterXCenterYConstraint() {
+    fileprivate func createViewWithAddCenterXCenterYConstraint() {
 
-        self.centerLabel = UILabel(frame: CGRectZero)
-        self.centerLabel.backgroundColor = UIColor.yellowColor()
+        self.centerLabel = UILabel(frame: CGRect.zero)
+        self.centerLabel.backgroundColor = UIColor.yellow
         self.centerLabel.text = "Some center label text"
         self.view.addSubview(self.centerLabel)
 
@@ -55,23 +55,23 @@ class ViewController: UIViewController {
         self.centerLabel.addCenterYConstraint(toView: self.centerLabel.superview)
     }
 
-    private func createViewWithLeadingTrailingConstraints() {
+    fileprivate func createViewWithLeadingTrailingConstraints() {
 
-        let leadingTrailingLabel = UILabel(frame: CGRectZero)
-        leadingTrailingLabel.backgroundColor = UIColor.purpleColor()
+        let leadingTrailingLabel = UILabel(frame: CGRect.zero)
+        leadingTrailingLabel.backgroundColor = UIColor.purple
         leadingTrailingLabel.text = "Some leading / trailing label text"
         self.view.addSubview(leadingTrailingLabel)
 
         leadingTrailingLabel.translatesAutoresizingMaskIntoConstraints = false
-        leadingTrailingLabel.addTopConstraint(toView: self.centerLabel, attribute: .Bottom, constant: 20.0)
-        leadingTrailingLabel.addLeadingConstraint(toView: self.centerLabel, attribute: .Leading, constant: 0.0)
-        leadingTrailingLabel.addTrailingConstraint(toView: self.centerLabel, attribute: .Trailing, constant: 0.0)
+        leadingTrailingLabel.addTopConstraint(toView: self.centerLabel, attribute: .bottom, constant: 20.0)
+        leadingTrailingLabel.addLeadingConstraint(toView: self.centerLabel, attribute: .leading, constant: 0.0)
+        leadingTrailingLabel.addTrailingConstraint(toView: self.centerLabel, attribute: .trailing, constant: 0.0)
     }
 
-    private func createViewWithAddWidthHeightConstraints() {
+    fileprivate func createViewWithAddWidthHeightConstraints() {
 
-        self.fixedWidthAndHeightView = UIView(frame: CGRectZero)
-        self.fixedWidthAndHeightView.backgroundColor = UIColor.blueColor()
+        self.fixedWidthAndHeightView = UIView(frame: CGRect.zero)
+        self.fixedWidthAndHeightView.backgroundColor = UIColor.blue
         self.view.addSubview(self.fixedWidthAndHeightView)
 
         self.fixedWidthAndHeightView.translatesAutoresizingMaskIntoConstraints = false
