@@ -1,3 +1,7 @@
+[![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/ustwo/autolayout-helper-swift/blob/ci-results-readme/LICENSE)
+[![Build Status](https://travis-ci.org/ustwo/autolayout-helper-swift.svg?branch=ci-results-readme)](https://travis-ci.org/ustwo/autolayout-helper-swift)
+[![codecov.io](https://codecov.io/github/ustwo/autolayout-helper-swift/coverage.svg?branch=ci-results-readme)](https://codecov.io/github/ustwo/autolayout-helper-swift?branch=ci-results-readme)
+
 AutoLayoutHelper
 =======================
 
@@ -9,11 +13,11 @@ Using Auto Layout programatically (before [iOS 9's Auto Layout API](http://bartj
 
 ### A Solution
 
-We can make creating common `NSLayoutConstraint` relations into some reusable methods we can call on any class that subclasses `UIView`. We also ensure the constraint created gets added to the view's superview for you. 
+We can make creating common `NSLayoutConstraint` relations into some reusable methods we can call on any class that subclasses `UIView`. We also ensure the constraint created gets added to the view's superview for you.
 
 This means you can relate a view to another view with the `NSLayoutAttribute` or `NSLayoutRelation` you need, as part of the view's setup and also helps us keep the code [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).
 
-### Dependencies 
+### Dependencies
 
 * [Xcode](https://itunes.apple.com/gb/app/xcode/id497799835?mt=12#)
 
@@ -33,25 +37,25 @@ This means you can relate a view to another view with the `NSLayoutAttribute` or
 
 ##### Fill Superview
 
-Add `NSLayoutConstraint` relations for a `UIView` relating its top, leading, trailing and bottom edges to it's superview 
+Add `NSLayoutConstraint` relations for a `UIView` relating its top, leading, trailing and bottom edges to it's superview
 
     // Create view
-    
+
     let leftView = UIView(frame: CGRectZero)
     leftView.backgroundColor = UIColor.redColor()
     self.view.addSubview(leftView)
-    
+
     // Add constraints
-        
+
     leftView.setTranslatesAutoresizingMaskIntoConstraints(false)
-    
+
     leftView.addTopConstraint(toView: superview, attribute: NSLayoutAttribute.Top, relation: NSLayoutRelation.Equal, constant: 10.0)
     leftView.addLeadingConstraint(toView: superview, attribute: NSLayoutAttribute.Leading, relation: NSLayoutRelation.Equal, constant: 10.0)
     leftView.addTrailingConstraint(toView: superview, attribute: NSLayoutAttribute.Trailing, relation: NSLayoutRelation.Equal, constant: -10.0)
     leftView.addBottomConstraint(toView: superview, attribute: NSLayoutAttribute.Bottom, relation: NSLayoutRelation.Equal, constant: -10.0)
 
 or shorter you can omit the attributes:
-    
+
     leftView.addTopConstraint(toView: superview, constant: 10.0)
     leftView.addLeadingConstraint(toView: superview, constant: 10.0)
     leftView.addTrailingConstraint(toView: superview, constant: -10.0)
@@ -63,11 +67,11 @@ or even shorter using `fillSuperView` (via [@danieladias](https://github.com/dan
 
 ##### Centering
 
-Add constraints to center a `UIView` within its superview both vertically (Y axis) and horizontally (X axis): 
+Add constraints to center a `UIView` within its superview both vertically (Y axis) and horizontally (X axis):
 
     label.addCenterXConstraintToView(label.superview, relation: NSLayoutRelation.Equal, constant:0.0)
     label.addCenterYConstraintToView(label.superview, relation: NSLayoutRelation.Equal, constant:0.0)
-    
+
 Add constraints for a fixed width and height amount:
 
     view.addWidthConstraintWithRelation: NSLayoutRelation.Equal, constant:100.0)
@@ -76,17 +80,17 @@ Add constraints for a fixed width and height amount:
 Modify constraints (since the methods return them to you)
 
     // Create a reference to the `NSLayoutConstraint` e.g. for height
-        
+
     self.heightConstraint = view.addHeightConstraint(toView: nil, constant: 80.0)
-    
+
     ...
-    
+
     // Update the height constant
-    
+
     self.heightConstraint.constant = 30.0;
 
     // Animate changes
-    
+
     UIView.animateWithDuration(0.3, animations: { () -> Void in
 
         view.layoutIfNeeded()
@@ -95,4 +99,3 @@ Modify constraints (since the methods return them to you)
 ### Contributors
 
 * Development: [Shagun Madhikarmi](mailto:shagun@ustwo.com), [Daniela Dias](mailto:daniela@ustwo.com)
-
