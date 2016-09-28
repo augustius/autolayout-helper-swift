@@ -1,6 +1,6 @@
-[![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/ustwo/autolayout-helper-swift/blob/ci-results-readme/LICENSE)
-[![Build Status](https://travis-ci.org/ustwo/autolayout-helper-swift.svg?branch=ci-results-readme)](https://travis-ci.org/ustwo/autolayout-helper-swift)
-[![codecov.io](https://codecov.io/github/ustwo/autolayout-helper-swift/coverage.svg?branch=ci-results-readme)](https://codecov.io/github/ustwo/autolayout-helper-swift?branch=ci-results-readme)
+[![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/ustwo/autolayout-helper-swift/blob/master/LICENSE)
+[![Build Status](https://travis-ci.org/ustwo/autolayout-helper-swift.svg?branch=master)](https://travis-ci.org/ustwo/autolayout-helper-swift)
+[![codecov.io](https://codecov.io/github/ustwo/autolayout-helper-swift/coverage.svg?branch=master)](https://codecov.io/github/ustwo/autolayout-helper-swift?branch=master)
 
 AutoLayoutHelper
 =======================
