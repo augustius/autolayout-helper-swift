@@ -47,8 +47,6 @@ Add `NSLayoutConstraint` relations for a `UIView` relating its top, leading, tra
 
     // Add constraints
 
-    leftView.setTranslatesAutoresizingMaskIntoConstraints(false)
-
     leftView.addTopConstraint(toView: superview, attribute: NSLayoutAttribute.Top, relation: NSLayoutRelation.Equal, constant: 10.0)
     leftView.addLeadingConstraint(toView: superview, attribute: NSLayoutAttribute.Leading, relation: NSLayoutRelation.Equal, constant: 10.0)
     leftView.addTrailingConstraint(toView: superview, attribute: NSLayoutAttribute.Trailing, relation: NSLayoutRelation.Equal, constant: -10.0)

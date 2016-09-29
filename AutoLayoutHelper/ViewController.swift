@@ -39,7 +39,6 @@ class ViewController: UIViewController {
         self.filledView.backgroundColor = UIColor.red
         self.view.addSubview(self.filledView)
 
-        self.filledView.translatesAutoresizingMaskIntoConstraints = false
         self.filledView.fillSuperView(UIEdgeInsetsMake(20.0, 20.0, 20.0, 20.0))
     }
     
@@ -50,7 +49,6 @@ class ViewController: UIViewController {
         self.centerLabel.text = "Some center label text"
         self.view.addSubview(self.centerLabel)
 
-        self.centerLabel.translatesAutoresizingMaskIntoConstraints = false
         self.centerLabel.addCenterXConstraint(toView: self.centerLabel.superview)
         self.centerLabel.addCenterYConstraint(toView: self.centerLabel.superview)
     }
@@ -62,7 +60,6 @@ class ViewController: UIViewController {
         leadingTrailingLabel.text = "Some leading / trailing label text"
         self.view.addSubview(leadingTrailingLabel)
 
-        leadingTrailingLabel.translatesAutoresizingMaskIntoConstraints = false
         leadingTrailingLabel.addTopConstraint(toView: self.centerLabel, attribute: .bottom, constant: 20.0)
         leadingTrailingLabel.addLeadingConstraint(toView: self.centerLabel, attribute: .leading, constant: 0.0)
         leadingTrailingLabel.addTrailingConstraint(toView: self.centerLabel, attribute: .trailing, constant: 0.0)
@@ -74,7 +71,6 @@ class ViewController: UIViewController {
         self.fixedWidthAndHeightView.backgroundColor = UIColor.blue
         self.view.addSubview(self.fixedWidthAndHeightView)
 
-        self.fixedWidthAndHeightView.translatesAutoresizingMaskIntoConstraints = false
         self.fixedWidthAndHeightView.addTopConstraint(toView: self.fixedWidthAndHeightView.superview, constant: 20.0)
         self.fixedWidthAndHeightView.addLeadingConstraint(toView: self.fixedWidthAndHeightView.superview, constant: 20.0)
         self.fixedWidthAndHeightView.addWidthConstraint(toView: nil, constant: 80.0)
