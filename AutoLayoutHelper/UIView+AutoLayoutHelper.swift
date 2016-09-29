@@ -311,7 +311,7 @@ extension UIView {
     /// Adds an NSLayoutConstraint to the superview
     fileprivate func addConstraintToSuperview(_ constraint: NSLayoutConstraint) {
         
-        translatesAutoresizingMaskIntoConstraints = false
+        self.translatesAutoresizingMaskIntoConstraints = false
         self.superview?.addConstraint(constraint)
     }
     
