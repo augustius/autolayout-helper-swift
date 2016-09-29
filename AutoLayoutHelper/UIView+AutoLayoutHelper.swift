@@ -311,6 +311,8 @@ extension UIView {
     /// Creates an NSLayoutConstraint using its factory method given both views, attributes a relation and offset
     fileprivate func createConstraint(attribute attr1: NSLayoutAttribute, toView: UIView?, attribute attr2: NSLayoutAttribute, relation: NSLayoutRelation, constant: CGFloat) -> NSLayoutConstraint {
         
+        translatesAutoresizingMaskIntoConstraints = false
+        
         let constraint = NSLayoutConstraint(
             item: self,
             attribute: attr1,
