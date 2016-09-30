@@ -40,9 +40,11 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
     func testFillSuperview_ReturnsCorrectNumberOfConstraints() {
 
         // When
+
         let constraints = mockView.fillSuperView()
 
         // Then
+
         let actualResult = constraints.count
         let expectedResult = 4
 
@@ -52,9 +54,11 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
     func testFillSuperview_AddsConstraints() {
 
         // When
+
         let constraints = mockView.fillSuperView()
 
         // Then
+
         let expectedResult = mockSuperview.constraints
         let actualResult = constraints
 
