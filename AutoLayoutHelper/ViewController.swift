@@ -8,12 +8,21 @@
 
 import UIKit
 
+public enum AnimationDirection: Int {
+    case up
+    case down
+    case left
+    case right
+}
+
 class ViewController: UIViewController {
 
     fileprivate var heightConstraint: NSLayoutConstraint!
-    fileprivate var filledView: UIView!
-    fileprivate var centerLabel: UILabel!
-    fileprivate var fixedWidthAndHeightView: UIView!
+
+    fileprivate var filledView = UIView()
+    fileprivate var centerLabel = UILabel()
+    fileprivate var leadingTrailingLabel = UILabel()
+    fileprivate var fixedWidthAndHeightView = UIView()
 
 
     // MARK: - View lifecycle
@@ -24,56 +33,53 @@ class ViewController: UIViewController {
 
         // Examples
 
-        self.createViewWithAddTopLeftRightBottomConstraints()
-        self.createViewWithAddCenterXCenterYConstraint()
-        self.createViewWithLeadingTrailingConstraints()
-        self.createViewWithAddWidthHeightConstraints()
+        setupViewWithAddTopLeftRightBottomConstraints()
+        setupViewWithAddCenterXCenterYConstraint()
+        setupViewWithLeadingTrailingConstraints()
+        setupViewWithAddWidthHeightConstraints()
     }
 
 
     // MARK: - Examples
 
-    fileprivate func createViewWithAddTopLeftRightBottomConstraints() {
-   
-        self.filledView = UIView(frame: CGRect.zero)
-        self.filledView.backgroundColor = UIColor.red
-        self.view.addSubview(self.filledView)
+    fileprivate func setupViewWithAddTopLeftRightBottomConstraints() {
 
-        self.filledView.fillSuperView(UIEdgeInsetsMake(20.0, 20.0, 20.0, 20.0))
-    }
-    
-    fileprivate func createViewWithAddCenterXCenterYConstraint() {
+        filledView.backgroundColor = UIColor.red
+        view.addSubview(filledView)
 
-        self.centerLabel = UILabel(frame: CGRect.zero)
-        self.centerLabel.backgroundColor = UIColor.yellow
-        self.centerLabel.text = "Some center label text"
-        self.view.addSubview(self.centerLabel)
-
-        self.centerLabel.addCenterXConstraint(toView: self.centerLabel.superview)
-        self.centerLabel.addCenterYConstraint(toView: self.centerLabel.superview)
+        let edgeInsets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 20.0, right: 20.0)
+        filledView.fillSuperView(edgeInsets)
     }
 
-    fileprivate func createViewWithLeadingTrailingConstraints() {
+    fileprivate func setupViewWithAddCenterXCenterYConstraint() {
 
-        let leadingTrailingLabel = UILabel(frame: CGRect.zero)
+        centerLabel.backgroundColor = UIColor.yellow
+        centerLabel.text = "Some center label text"
+        view.addSubview(centerLabel)
+
+        centerLabel.addCenterXConstraint(toView: centerLabel.superview)
+        centerLabel.addCenterYConstraint(toView: centerLabel.superview)
+    }
+
+    fileprivate func setupViewWithLeadingTrailingConstraints() {
+
         leadingTrailingLabel.backgroundColor = UIColor.purple
         leadingTrailingLabel.text = "Some leading / trailing label text"
-        self.view.addSubview(leadingTrailingLabel)
+        view.addSubview(leadingTrailingLabel)
 
-        leadingTrailingLabel.addTopConstraint(toView: self.centerLabel, attribute: .bottom, constant: 20.0)
-        leadingTrailingLabel.addLeadingConstraint(toView: self.centerLabel, attribute: .leading, constant: 0.0)
-        leadingTrailingLabel.addTrailingConstraint(toView: self.centerLabel, attribute: .trailing, constant: 0.0)
+        leadingTrailingLabel.addTopConstraint(toView: centerLabel, attribute: .bottom, constant: 20.0)
+        leadingTrailingLabel.addLeadingConstraint(toView: centerLabel, attribute: .leading, constant: 0.0)
+        leadingTrailingLabel.addTrailingConstraint(toView: centerLabel, attribute: .trailing, constant: 0.0)
     }
 
-    fileprivate func createViewWithAddWidthHeightConstraints() {
+    fileprivate func setupViewWithAddWidthHeightConstraints() {
 
-        self.fixedWidthAndHeightView = UIView(frame: CGRect.zero)
-        self.fixedWidthAndHeightView.backgroundColor = UIColor.blue
-        self.view.addSubview(self.fixedWidthAndHeightView)
+        fixedWidthAndHeightView.backgroundColor = UIColor.blue
+        view.addSubview(fixedWidthAndHeightView)
 
-        self.fixedWidthAndHeightView.addTopConstraint(toView: self.fixedWidthAndHeightView.superview, constant: 20.0)
-        self.fixedWidthAndHeightView.addLeadingConstraint(toView: self.fixedWidthAndHeightView.superview, constant: 20.0)
-        self.fixedWidthAndHeightView.addWidthConstraint(toView: nil, constant: 80.0)
-        self.fixedWidthAndHeightView.addHeightConstraint(toView: nil, constant: 80.0)
+        fixedWidthAndHeightView.addTopConstraint(toView: fixedWidthAndHeightView.superview, constant: 20.0)
+        fixedWidthAndHeightView.addLeadingConstraint(toView: fixedWidthAndHeightView.superview, constant: 20.0)
+        fixedWidthAndHeightView.addWidthConstraint(toView: nil, constant: 80.0)
+        fixedWidthAndHeightView.addHeightConstraint(toView: nil, constant: 80.0)
     }
 }
