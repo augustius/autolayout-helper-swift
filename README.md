@@ -41,16 +41,16 @@ Add `NSLayoutConstraint` relations for a `UIView` relating its top, leading, tra
 
     // Create view
 
-    let leftView = UIView(frame: CGRectZero)
-    leftView.backgroundColor = UIColor.redColor()
-    self.view.addSubview(leftView)
+    let leftView = UIView()
+    leftView.backgroundColor = UIColor.red
+    view.addSubview(leftView)
 
     // Add constraints
 
-    leftView.addTopConstraint(toView: superview, attribute: NSLayoutAttribute.Top, relation: NSLayoutRelation.Equal, constant: 10.0)
-    leftView.addLeadingConstraint(toView: superview, attribute: NSLayoutAttribute.Leading, relation: NSLayoutRelation.Equal, constant: 10.0)
-    leftView.addTrailingConstraint(toView: superview, attribute: NSLayoutAttribute.Trailing, relation: NSLayoutRelation.Equal, constant: -10.0)
-    leftView.addBottomConstraint(toView: superview, attribute: NSLayoutAttribute.Bottom, relation: NSLayoutRelation.Equal, constant: -10.0)
+    leftView.addTopConstraint(toView: superview, attribute: .top, relation: .equal, constant: 10.0)
+    leftView.addLeadingConstraint(toView: superview, attribute: .leading, relation: .equal, constant: 10.0)
+    leftView.addTrailingConstraint(toView: superview, attribute: .trailing, relation: .equal, constant: -10.0)
+    leftView.addBottomConstraint(toView: superview, attribute: .bottom, relation: .equal, constant: -10.0)
 
 or shorter you can omit the attributes:
 
@@ -61,31 +61,32 @@ or shorter you can omit the attributes:
 
 or even shorter using `fillSuperView` (via [@danieladias](https://github.com/danieladias) )
 
-    leftView.fillSuperView(UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0))
+    let edgeInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
+    leftView.fillSuperView(edgeInsets)
 
 ##### Centering
 
 Add constraints to center a `UIView` within its superview both vertically (Y axis) and horizontally (X axis):
 
-    label.addCenterXConstraintToView(label.superview, relation: NSLayoutRelation.Equal, constant:0.0)
-    label.addCenterYConstraintToView(label.superview, relation: NSLayoutRelation.Equal, constant:0.0)
+    label.addCenterXConstraintToView(label.superview, relation: .equal, constant:0.0)
+    label.addCenterYConstraintToView(label.superview, relation: .equal, constant:0.0)
 
 Add constraints for a fixed width and height amount:
 
-    view.addWidthConstraintWithRelation: NSLayoutRelation.Equal, constant:100.0)
-    view.addHeightConstraintWithRelation: NSLayoutRelation.Equal, constant:80.0)
+    view.addWidthConstraintWithRelation: .equal, constant:100.0)
+    view.addHeightConstraintWithRelation: .equal, constant:80.0)
 
 Modify constraints (since the methods return them to you)
 
     // Create a reference to the `NSLayoutConstraint` e.g. for height
 
-    self.heightConstraint = view.addHeightConstraint(toView: nil, constant: 80.0)
+    heightConstraint = view.addHeightConstraint(toView: nil, constant: 80.0)
 
     ...
 
     // Update the height constant
 
-    self.heightConstraint.constant = 30.0;
+    heightConstraint.constant = 30.0;
 
     // Animate changes
 
