@@ -12,7 +12,7 @@ Pod::Spec.new do |spec|
     :git => 'https://github.com/ustwo/autolayout-helper-swift.git',
     :tag => 'v1.0.0'
   }
-  spec.ios.deployment_target = '8.0'
+  spec.ios.deployment_target = '8.3'
   spec.source_files = 'Sources/*.swift'
   spec.requires_arc = true
 end
