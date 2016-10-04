@@ -28,8 +28,34 @@ This means you can relate a view to another view with the `NSLayoutAttribute` or
 
 ### Installation
 
+### CocoaPods
+
+[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
+
+```bash
+$ gem install cocoapods
+```
+
+To integrate AutoLayoutHelperSwift into your Xcode project using CocoaPods, specify it in your `Podfile`:
+
+```ruby
+platform :ios, '8.3'
+
+use_frameworks!
+
+pod 'AutoLayoutHelperSwift', '~> 1.0.0'
+```
+
+Then, run the following command:
+
+```bash
+$ pod install
+```
+
+### Manually
+
 - Add the `UIView+AutoLayoutHelper.swift` file to your Xcode project.
-- **Note**. CocoaPods support and Dynamic Framework target both coming soon!
+- **Note**. Dynamic Framework target coming soon!
 
 ### Usage
 
