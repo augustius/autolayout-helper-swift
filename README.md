@@ -120,6 +120,20 @@ Modify constraints (since the methods return them to you)
         view.layoutIfNeeded()
     })
 
-## Contributors
 
-* Development: [Shagun Madhikarmi](mailto:shagun@ustwo.com), [Daniela Dias](mailto:daniela@ustwo.com)
+## Contributing
+
+Please note that this project is released with a Contributor Code of Conduct. By participating in this project you agree to abide by its terms. See the [Code of Conduct](https://github.com/ustwo/baseview-swift/blob/master/CODE_OF_CONDUCT) file
+
+## Maintainers
+
+* [Shagun Madhikarmi](mailto:shagun@ustwo.com)
+* [Daniela Dias](mailto:daniela@ustwo.com)
+
+## Contact
+
+[open.source@ustwo.com](mailto:open.source@ustwo.com)
+
+## License
+
+AutoLayoutHelper is released under the MIT License. See [License](LICENSE).
