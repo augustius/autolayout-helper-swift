@@ -120,6 +120,16 @@ Modify constraints (since the methods return them to you)
         view.layoutIfNeeded()
     })
 
-## Contributors
 
-* Development: [Shagun Madhikarmi](mailto:shagun@ustwo.com), [Daniela Dias](mailto:daniela@ustwo.com)
+## Maintainers
+
+* [Shagun Madhikarmi](mailto:shagun@ustwo.com)
+* [Daniela Dias](mailto:daniela@ustwo.com)
+
+## Contact
+
+[open.source@ustwo.com](mailto:open.source@ustwo.com)
+
+## License
+
+AutoLayoutHelper is released under the MIT License. See [License](LICENSE).
