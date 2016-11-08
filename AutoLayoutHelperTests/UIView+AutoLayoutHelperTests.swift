@@ -8,7 +8,7 @@
 
 import UIKit
 import XCTest
-
+@testable import AutoLayoutHelper
 
 class UIViewAutoLayoutHelperTests: XCTestCase {
 
