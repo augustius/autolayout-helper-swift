@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = 'AutoLayoutHelperSwift'
-  spec.version = '1.0.0'
+  spec.version = '1.0.2'
   spec.license = 'MIT'
   spec.summary = 'UIView extension to easily create common Auto Layout Constraints for iOS.'
   spec.homepage = 'https://github.com/ustwo/autolayout-helper-swift'
@@ -10,7 +10,7 @@ Pod::Spec.new do |spec|
   }
   spec.source = {
     :git => 'https://github.com/ustwo/autolayout-helper-swift.git',
-    :tag => 'v1.0.0'
+    :tag => 'v1.0.2'
   }
   spec.ios.deployment_target = '8.3'
   spec.source_files = 'Sources/*.swift'
